@@ -24,6 +24,15 @@ module.exports = (app, Polls, passport) => {
             failureFlash: true
         }));
     
+    app.route('/auth/twitter')
+        .get(passport.authenticate('twitter'));
+    
+    app.route('/auth/twitter/callback')
+        .get(passport.authenticate('twitter', {
+            successRedirect: '/profile', 
+            failureRedirect: '/'
+        }));
+    
     app.route('/auth/facebook')
         .get(passport.authenticate('facebook', { scope: 'email' }));
     
