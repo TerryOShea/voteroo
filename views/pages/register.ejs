@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head><% include ../partials/head %></head>
+    <body>
+        <header><% include ../partials/header %></header>
+        <h1>Register</h1>
+        
+        <% if (message.length > 0) { %>
+            <div class='alert alert-danger'><%= message %></div>
+        <% } %>
+
+        <div class='register-box'>
+            <a href='/auth/facebook'>Register through Facebook</a>
+            <div>Register through Twitter</div>
+            <form action='/register' method='POST'>
+                <input type='text' name='firstname' placeholder='First name' onfocus='this.placeholder = ""'>
+                <input type='text' name='lastname' placeholder='Last name' onfocus='this.placeholder = ""'>
+                <input type='text' name='email' placeholder='Email address' onfocus='this.placeholder = ""'>
+                <input type='password' name='password' placeholder='Password' onfocus='this.placeholder = ""'>
+                <input type='submit' value='Register'>
+            </form>
+            <form action='/signin' method='GET'>
+                <input type='submit' value='Already have an account? Sign in!'>
+            </form>
+        </div>
+        
+        
+        
+        <footer><% include ../partials/footer %></footer>
+    </body>
+</html>

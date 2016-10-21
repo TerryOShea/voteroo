@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head><% include ../partials/head %></head>
+    <body>
+        <header><% include ../partials/header %></header>
+        <h1>Sign In</h1>
+        
+        <% if (message.length > 0) { %>
+            <div class='alert alert-danger'><%= message %></div>
+        <% } %>
+        
+        <div class='signin-box'>
+            <a href='/auth/facebook'>Sign in through Facebook</a>
+            <div>Sign in through Twitter</div>
+            <form action='/signin' method='POST'>
+                <input type='text' name='email' placeholder='Email address' onfocus='this.placeholder = ""'>
+                <input type='password' name='password' placeholder='Password' onfocus='this.placeholder = ""'>
+                <input type='submit' value='Sign in'>
+            </form>
+            <div>I've forgotten my password</div>
+            <form action='/register' method='GET'>
+                <input type='submit' value='New? Sign up!'>
+            </form>
+        </div>
+        
+        
+        
+        <footer><% include ../partials/footer %></footer>
+    </body>
+</html>

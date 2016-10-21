@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head><% include ../partials/head %></head>
+    <body>
+        <header><% include ../partials/header %></header>
+
+        <div class='profile-box'>
+            <h1>Welcome, <%= user.local.firstname %>!</h1>
+            <div>My polls: [...]</div>
+            <br>
+            <form action='/signout' method='GET'>
+                <input type='submit' value='Sign out'>
+            </form>
+        </div>
+        
+        <footer><% include ../partials/footer %></footer>
+    </body>
+</html>

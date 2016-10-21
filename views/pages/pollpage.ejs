@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../partials/head %>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    </head>
+    <body>
+        <header><% include ../partials/header %></header>
+        <form action='/see_poll' method='POST'>
+            <select name='selected' required>
+                <option value='' disabled selected>Choose an option</option>
+                <% for (var i = 0; i < poll.allvotes.length; i++) { %>
+                    <option value='<%= '{"title": "' + poll.title + '", "index": ' + i + '}' %>'><%= poll.allvotes[i].option %></option>
+                <% } %>
+            </select>
+            <input type='submit' value='VOTE!'>
+        </form>
+        <div class='poll-container'>
+            <div class='poll-center' id='thing'></div>
+        </div>
+        <footer><% include ../partials/footer %></footer>
+        <script type='text/javascript'>
+            var seedTitle = '<%= poll.title %>';
+            var seedData = JSON.parse('<%- JSON.stringify(poll.allvotes)%>');
+        </script>
+        <script src='/views/scripts/d3.min.js'></script>
+        <script src="/views/scripts/graphmaker.js" rel="script" type="text/javascript"></script>
+    </body>
+</html>

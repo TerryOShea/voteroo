@@ -1,0 +1,178 @@
+body {
+    margin: 0;
+}
+
+
+
+
+header {
+  width: 80vw;
+  height: 75px;
+  background: #ededed;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header-title {
+  text-transform: uppercase;
+  font: 30px 'Montserrat', sans-serif; 
+  line-height: 75px;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.header-title:hover {
+  cursor: pointer;
+}
+
+.h-t-o {
+  font-weight: 700;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-image: url(http://media2.intoday.in/indiatoday/images/stories//2016JUNE/4_062216123618.jpg);
+  color: black;
+}
+
+.h-t-non-o {
+  font-weight: 400;
+  -webkit-text-fill-color: black;
+}
+
+.header-btns-box {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  height: 75px;
+}
+
+.header-btns-box > form {
+  display: inline-block;
+}
+
+.header-btn {
+  width: 45px;
+  height: 45px;
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.header-btn:hover {
+  cursor: pointer;
+}
+
+.header-btn:focus {
+  outline: 0;
+}
+
+.header-sign-in-btn {
+  background: white;
+  color: gray;
+  border: 3px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.header-home-btn {
+  border: 0;
+  background: #ededed;
+  color: gray;
+  border-radius: 10%;
+}
+
+.header-home-btn:hover {
+  background: purple;
+  color: white;
+}
+
+
+
+.signin-box {
+  width: 80vw;
+  height: 500px;
+  background: #ededed;
+  margin: 0 auto;
+}
+
+
+
+
+.poll-container {
+  display: inline-block;
+  position: relative;
+  height: 600px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.label-text {
+  /*text-anchor: middle;*/
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.poll-center {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 20px solid #fff;
+  box-sizing: border-box;
+}
+
+.poll-title {
+  font: 24px 'Open Sans', sans-serif;
+  color: #36454f;
+  text-align: center;
+}
+
+
+
+
+
+
+.poll-wrapper {
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.poll-wrapper > form {
+    width: 100%;
+}
+
+.poll-btn, .add-poll-btn {
+    height: 50px;
+    width: 100%;
+    background: lightgray;
+    text-align: center;
+    line-height: 50px;
+    border: none;
+    font: 16px 'Open Sans', sans-serif;
+}
+
+.poll-btn:hover, .add-poll-btn:hover {
+    background: #6D8BED;
+    color: #fff;
+    cursor: pointer;
+}
+
+footer {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-size: 12px;
+    width: 100vw;
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        width: 100vw;
+    }
+    
+    .poll {
+        width: 100vw;
+    }
+    
+    .h-t-non-o {
+        display: none;
+    }
+}

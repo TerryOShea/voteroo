@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head><% include ../partials/head %></head>
+    <body>
+        <header><% include ../partials/header %></header>
+        <form action='/add_new_poll' method='POST' class='poll-form'>
+            Title: <input type='text' name='title'>
+            Options (comma-separated): <input type='text' name='options'>
+            <input type='submit' value='Submit'>
+        </form>
+        <footer><% include ../partials/footer %></footer>
+    </body>
+</html>
