@@ -27,8 +27,7 @@ module.exports = (app, Polls, passport) => {
     app.route('/auth/facebook')
         .get(passport.authenticate('facebook', { scope: 'email' }));
     
-    app.route('/auth/facebook/callback')
-        .get(passport.authenticate('facebook', {
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
             successRedirect: '/profile', 
             failureRedirect: '/'
         }));
