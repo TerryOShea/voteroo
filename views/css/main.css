@@ -1,5 +1,6 @@
 body {
-    margin: 0;
+  margin: 0;
+  background: #FCFCFC;
 }
 
 button:hover {
@@ -13,35 +14,35 @@ button:focus {
 
 
 header {
-  width: 80vw;
-  height: 75px;
-  background: #ededed;
-  margin: 0 auto;
+  width: 980px;
+  height: 100px;
+  margin: 0 auto 20px auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 20px;
+  border-bottom: 1px solid #222;
 }
 
 .header-title {
   text-transform: uppercase;
-  font: 30px 'Montserrat', sans-serif; 
+  font: 48px 'Montserrat', sans-serif; 
   border: 0;
   background: transparent;
+  text-align: center;
 }
 
 .h-t-o {
   font-weight: 700;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: url(http://media2.intoday.in/indiatoday/images/stories//2016JUNE/4_062216123618.jpg);
-  color: black;
+  background-image: url('/views/images/pollos.png');
+  background-position: -45px -18px;
 }
 
 .h-t-non-o {
   font-weight: 400;
-  -webkit-text-fill-color: black;
+  -webkit-text-fill-color: #222;
 }
 
 .header-btns-box {
@@ -49,17 +50,17 @@ header {
 }
 
 .header-btn {
-  background: white;
-  color: gray;
-  font: 16px 'Montserrat', sans-serif;
-  margin-left: 10px;
+  background: #3DCFFF;
+  color: #222;
+  font: 16px 'Open Sans', sans-serif;
+  margin-left: 15px;
   padding: 10px 15px;
+  border-radius: 3px;
   border: 0;
 }
 
 .header-btn:hover, .header-btn:focus {
-  background: purple;
-  color: white;
+  background: #17A9D9;
 }
 
 .menu-btn {
@@ -77,6 +78,51 @@ header {
   flex-direction: column;
   align-items: center;
 }
+
+footer {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 12px;
+  width: 100vw;
+}
+
+
+
+.polls-container {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 1020px;
+}
+
+.poll-btn, .add-poll-btn, .disabled-btn {
+  height: 200px;
+  width: 300px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 20px;
+  font: 16px 'Open Sans', sans-serif;
+  color: #000;
+  border-radius: 3px;
+  background: #efefef;
+  border: 0;
+}
+
+.poll-btn:hover, .add-poll-btn:hover {
+  background: #30C2F2;
+}
+
+.disabled-btn:hover {
+  cursor: not-allowed;
+}
+
+
+
+
+
+
 
 
 
@@ -126,45 +172,42 @@ header {
 
 
 
-.poll-wrapper {
-    width: 70vw;
-    margin: 0 auto;
+
+@media screen and (max-width: 1060px) {
+  .polls-container {
+    width: 680px;
+  }
+  
+  header {
+    width: 640px;
+  }
 }
 
-.poll-wrapper > form {
-    width: 100%;
-}
-
-.poll-btn, .add-poll-btn {
-    height: 50px;
-    width: 100%;
-    background: lightgray;
-    text-align: center;
-    line-height: 50px;
-    border: none;
-    font: 16px 'Open Sans', sans-serif;
-}
-
-.poll-btn:hover, .add-poll-btn:hover {
-    background: #6D8BED;
-    color: #fff;
-    cursor: pointer;
-}
-
-footer {
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    font-size: 12px;
+@media screen and (max-width: 680px) {
+  header, .polls-container {
     width: 100vw;
-}
-
-@media screen and (max-width: 600px) {
-    header {
-        width: 100vw;
-    }
+  }
+  
+  .polls-container {
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  header {
+    padding: 0 20px;
+  }
+  
+  .poll-btn, .add-poll-btn {
+    margin: 0;
+    width: 100%;
+  }
     
     .header-btns-box {
       display: none;
+    }
+    
+    .header-title {
+      text-align: left;
     }
     
     .menu > .header-btn {
