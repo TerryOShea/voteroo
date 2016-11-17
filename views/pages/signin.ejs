@@ -3,24 +3,29 @@
     <head><% include ../partials/head %></head>
     <body>
         <header><% include ../partials/header %></header>
-        <h1>Sign In</h1>
         
         <% if (message.length > 0) { %>
             <div class='alert alert-danger'><%= message %></div>
         <% } %>
         
-        <div class='signin-box'>
-            <!--<a href='/auth/facebook'>Sign in through Facebook</a>
-            <a href='/auth/twitter'>Sign in through Twitter</a>-->
-            <form action='/signin' method='POST'>
-                <input type='text' name='email' placeholder='Email address' onfocus='this.placeholder = ""'>
-                <input type='password' name='password' placeholder='Password' onfocus='this.placeholder = ""'>
-                <button type='submit'>Sign in</button>
+        <div class='signin-container'>
+            <h1 class="title">Sign In</h1>
+            <form action='/auth/twitter' method='GET'>
+                <button type="submit" title="Sign in through Twitter" class="signin-btn signin-tw-btn">Sign in through Twitter <i class="fa fa-twitter"></i></button>
             </form>
-            <div>I've forgotten my password</div>
-            <form action='/register' method='GET'>
-                <button type='submit'>New? Sign up!</button>
+            <form action='/auth/facebook' method='GET'>
+                <button type="button" title="Sign in through Facebook" class="signin-btn signin-fb-btn">Sign in through Facebook <i class=""></i></button>
             </form>
+            <hr>
+            <form class='local-signin-form' action='/signin' method='POST'>
+                <input type='text' name='email' class='signin-input' placeholder='Email address'>
+                <input type='password' name='password' class='signin-input' placeholder='Password'>
+                <button type='submit' class='signin-btn local-signin-btn'>Sign in</button>
+            </form>
+            <div class='signin-bottom-links'>
+                <a href='/reset_password'>I've forgotten my password</a>
+                <a href='/register'>New? Sign up!</a>
+            </div>
         </div>
         
         
