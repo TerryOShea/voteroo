@@ -1,0 +1,15 @@
+<% if (locals.user) { %>
+    <form action='/profile' method='GET'>
+        <button class='header-btn' title='My profile'>My profile</button>
+    </form>
+    <form action='/signout' method='GET'>
+        <button class='header-btn' title='Sign out'>Sign out</button>
+    </form>
+<% } else { %>
+    <form action='/register' method='GET'>
+        <button class='header-btn' title='Register'>Register</button>
+    </form>
+    <form action='/signin' method='GET'>
+        <button class='header-btn' title='Sign in'>Sign in</i></button>
+    </form>
+<% } %>

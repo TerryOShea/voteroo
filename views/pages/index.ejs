@@ -4,9 +4,11 @@
     <body>
         <header><% include ../partials/header %></header>
         <div class='poll-wrapper'>
-            <form action='/add_new_poll' method='GET'>
-                <input type='submit' value='+ Add a Poll +' class='add-poll-btn'>
-            </form>
+            <% if(locals.user) { %>
+                <form action='/add_new_poll' method='GET'>
+                    <input type='submit' value='+ Add a Poll +' class='add-poll-btn'>
+                </form>
+            <% } %>
             <% for (var i = 0; i < polls.length; i++) { %>
                 <form action='/see_poll' method='GET'>
                     <input type='submit' name='title' value='<%= polls[i].title %>' class='poll-btn'>

@@ -1,12 +1,8 @@
-<div class='header-title'>
-    <!--background will be an image so Os look like donut graphs-->
-    <span class='h-t-non-o'>V</span><span class='h-t-o'>o<span class='h-t-non-o'>ter</span>oooooooo</span>
-</div>
-<div class='header-btns-box'>
-    <form action='/' method='GET'>
-        <button class='header-btn header-home-btn' title='Return home' type='submit'><i class='fa fa-2x fa-home'></i></button>
-    </form>
-    <form action='/profile' method='GET'>
-        <button class='header-btn header-sign-in-btn' title='Sign in or register'><i class='fa fa-2x fa-user'></i></button>
-    </form>
-</div>
+<form action='/' method='GET'>
+    <button class='header-title'>
+        <span class='h-t-non-o'>V</span><span class='h-t-o'>o<span class='h-t-non-o'>ter</span>oo</span>
+    </button>
+</form>
+<div class='header-btns-box'><% include ../partials/headerbuttons %></div>
+<button class="menu-btn header-btn" id="menu-btn"><i class="fa fa-bars"></i></button>
+<div class="menu" id="menu"><% include ../partials/headerbuttons %></div>

@@ -10,16 +10,16 @@
         <% } %>
         
         <div class='signin-box'>
-            <a href='/auth/facebook'>Sign in through Facebook</a>
-            <a href='/auth/twitter'>Sign in through Twitter</a>
+            <!--<a href='/auth/facebook'>Sign in through Facebook</a>
+            <a href='/auth/twitter'>Sign in through Twitter</a>-->
             <form action='/signin' method='POST'>
                 <input type='text' name='email' placeholder='Email address' onfocus='this.placeholder = ""'>
                 <input type='password' name='password' placeholder='Password' onfocus='this.placeholder = ""'>
-                <input type='submit' value='Sign in'>
+                <button type='submit'>Sign in</button>
             </form>
             <div>I've forgotten my password</div>
             <form action='/register' method='GET'>
-                <input type='submit' value='New? Sign up!'>
+                <button type='submit'>New? Sign up!</button>
             </form>
         </div>
         

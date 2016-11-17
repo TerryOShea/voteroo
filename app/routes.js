@@ -2,16 +2,19 @@
 
 module.exports = (app, Polls, passport) => {
     app.route('/')
-        .get((req, res) => {
+        .get(isLoggedIn, (req, res) => {
             Polls.find({}, (err, polls) => {
                 if (err) throw err;
                 res.render('pages/index', { polls: polls });
-            })
+            });
         });
     
     app.route('/profile')
-        .get(isLoggedIn, (req, res) => {
-            res.render('pages/profile', { user: req.user });
+        .get(mustBeLoggedIn, (req, res) => {
+            Polls.find({ owner: req.user.local.email }, (err, polls) => {
+                if (err) throw err;
+                res.render('pages/profile', { polls: polls } );
+            });
         });
     
     app.route('/signin')
@@ -42,7 +45,7 @@ module.exports = (app, Polls, passport) => {
         }));
     
     app.route('/signout')
-        .get((req, res) => {
+        .get(mustBeLoggedIn, (req, res) => {
             req.logout();
             res.redirect('/');
         });
@@ -58,7 +61,7 @@ module.exports = (app, Polls, passport) => {
         }));
     
     app.route('/see_poll')
-        .get((req, res) => {
+        .get(isLoggedIn, (req, res) => {
             Polls.find({ title: req.query.title }, (err, poll) => {
                 if (err) throw err;
                 res.render('pages/pollpage', { poll: poll[0] });
@@ -78,20 +81,41 @@ module.exports = (app, Polls, passport) => {
         });
     
     app.route('/add_new_poll')
-        .get((req, res) => {
+        .get(mustBeLoggedIn, (req, res) => {
             res.render('pages/addnew');
         })
-        .post((req, res) => {
-            var poll = new Polls({ title: req.body.title.trim(), allvotes: req.body.options.split(', ').map(function(opt) { return { option: opt, votes: 0 } }) });
+        .post(mustBeLoggedIn, (req, res) => {
+            var poll = new Polls({ title: req.body.title.trim(), 
+                                   allvotes: req.body.options.split(',').map(function(opt) { return { option: opt, votes: 0 } }), 
+                                   owner: req.user.local.email });
             poll.save(function(err, poll) {
                 if (err) throw err;
-                console.log('Saved ' + poll);
             });
             res.redirect('/');
+        });
+    
+    app.route('/delete_poll')
+        .get(mustBeLoggedIn, (req, res) => {
+            console.log(req.query.title);
+            Polls.remove({ title: req.query.title }, (err, result) => {
+                if (err) throw err;
+                res.redirect('/profile');
+            });
         });
 };
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) return next();
+    if (req.isAuthenticated()) {
+        res.locals.user = req.user;
+        return next(); 
+    }
+    return next();
+}
+
+function mustBeLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        res.locals.user = req.user;
+        return next();
+    }
     res.redirect('/signin');
 }

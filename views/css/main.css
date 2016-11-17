@@ -2,6 +2,13 @@ body {
     margin: 0;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 0;
+}
 
 
 
@@ -10,19 +17,18 @@ header {
   height: 75px;
   background: #ededed;
   margin: 0 auto;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 
 .header-title {
   text-transform: uppercase;
   font: 30px 'Montserrat', sans-serif; 
-  line-height: 75px;
-  margin-left: 20px;
-  display: inline-block;
-}
-
-.header-title:hover {
-  cursor: pointer;
+  border: 0;
+  background: transparent;
 }
 
 .h-t-o {
@@ -39,48 +45,37 @@ header {
 }
 
 .header-btns-box {
-  display: inline-block;
-  position: absolute;
-  right: 20px;
-  height: 75px;
-}
-
-.header-btns-box > form {
-  display: inline-block;
+  display: flex;
 }
 
 .header-btn {
-  width: 45px;
-  height: 45px;
-  margin-top: 15px;
-  margin-left: 5px;
-}
-
-.header-btn:hover {
-  cursor: pointer;
-}
-
-.header-btn:focus {
-  outline: 0;
-}
-
-.header-sign-in-btn {
   background: white;
   color: gray;
-  border: 3px solid #e0e0e0;
-  box-sizing: border-box;
-}
-
-.header-home-btn {
+  font: 16px 'Montserrat', sans-serif;
+  margin-left: 10px;
+  padding: 10px 15px;
   border: 0;
-  background: #ededed;
-  color: gray;
-  border-radius: 10%;
 }
 
-.header-home-btn:hover {
+.header-btn:hover, .header-btn:focus {
   background: purple;
   color: white;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  right: -200px;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  background: #6D8BED;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -166,6 +161,19 @@ footer {
 @media screen and (max-width: 600px) {
     header {
         width: 100vw;
+    }
+    
+    .header-btns-box {
+      display: none;
+    }
+    
+    .menu > .header-btn {
+      width: 180px;
+      margin: 0 auto;
+    }
+    
+    .menu-btn {
+      display: block;
     }
     
     .poll {

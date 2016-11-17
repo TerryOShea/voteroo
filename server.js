@@ -10,15 +10,9 @@ var express = require('express'),
 
 require('dotenv').config({ silent: true });
 
-var Schema = mongoose.Schema;
 var app = express();
 
-var pollSchema = new Schema({
-    title: String, 
-    allvotes: Array
-});
-
-var Polls = mongoose.model('Polls', pollSchema);
+var Polls = require('./app/models/poll');
 
 mongoose.connect(process.env.MONGOLAB_URI, (err) => {
 	if (err) return console.log(err)
@@ -29,7 +23,6 @@ mongoose.connect(process.env.MONGOLAB_URI, (err) => {
     app.set('view engine', 'ejs');
     
     app.use('/views', express.static(process.cwd() + '/views'));
-    app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(session({ secret: 'gveikcisdxhbrmyedcazxyxdcrshhnduffu', resave: false, saveUninitialized: false }));
     app.use(flash());

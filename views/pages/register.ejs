@@ -10,17 +10,17 @@
         <% } %>
 
         <div class='register-box'>
-            <a href='/auth/facebook'>Register through Facebook</a>
-            <a href='/auth/twitter'>Register through Twitter</a>
+            <!--<a href='/auth/facebook'>Register through Facebook</a>
+            <a href='/auth/twitter'>Register through Twitter</a>-->
             <form action='/register' method='POST'>
                 <input type='text' name='firstname' placeholder='First name' onfocus='this.placeholder = ""'>
                 <input type='text' name='lastname' placeholder='Last name' onfocus='this.placeholder = ""'>
                 <input type='text' name='email' placeholder='Email address' onfocus='this.placeholder = ""'>
                 <input type='password' name='password' placeholder='Password' onfocus='this.placeholder = ""'>
-                <input type='submit' value='Register'>
+                <button type='submit'>Register</button>
             </form>
             <form action='/signin' method='GET'>
-                <input type='submit' value='Already have an account? Sign in!'>
+                <button type='submit'>Already have an account? Sign in!</button>
             </form>
         </div>
         

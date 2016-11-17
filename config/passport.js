@@ -71,7 +71,6 @@ module.exports = (passport) => {
                     newUser.facebook.id = profile.id;
                     newUser.facebook.token = token;
                     newUser.facebook.firstname = profile.name.givenName; 
-                    console.log(profile.name.givenName);
                     newUser.facebook.lastname = profile.name.familyName;
                     newUser.facebook.email = profile.emails[0].value;
                     
