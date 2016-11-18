@@ -5,11 +5,11 @@
         <header><% include ../partials/header %></header>
 
         <div class='profile-box'>
-            <h1>Welcome, <%= user.local.firstname %>!</h1>
-            <div>My polls:</div>
+            <h1 class='title'>Welcome, <%= user.local.firstname %>!</h1>
+            <div class='subtitle'>My polls:</div>
             <% for (var i = 0; i < polls.length; i++) { %>
                 <form action='/see_poll' method='GET'>
-                    <input type='submit' name='title' value='<%= polls[i].title %>' class='poll-btn'>
+                    <button type='submit' name='title' value='<%= polls[i].title %>' class='poll-btn'><%= polls[i].title %></button>
                 </form>
                 <form action='/delete_poll' method='GET'>
                     <button type='submit' name='title' value='<%= polls[i].title %>'>Delete</button>

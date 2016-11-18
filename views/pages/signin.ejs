@@ -5,30 +5,32 @@
         <header><% include ../partials/header %></header>
         
         <% if (message.length > 0) { %>
-            <div class='alert alert-danger'><%= message %></div>
+            <div class='alert'><%= message %></div>
         <% } %>
         
-        <div class='signin-container'>
+        <div class='si-reg-container'>
             <h1 class="title">Sign In</h1>
+            <h4 class="subtitle">( New? <a href='/register'>Register here →</a> )</h4>
             <form action='/auth/twitter' method='GET'>
-                <button type="submit" title="Sign in through Twitter" class="signin-btn signin-tw-btn">Sign in through Twitter <i class="fa fa-twitter"></i></button>
+                <button type="submit" title="Sign in through Twitter" class="si-reg-btn si-reg-tw-btn">
+                    Sign in through Twitter <i class="fa fa-lg fa-twitter"></i>
+                </button>
             </form>
             <form action='/auth/facebook' method='GET'>
-                <button type="button" title="Sign in through Facebook" class="signin-btn signin-fb-btn">Sign in through Facebook <i class=""></i></button>
+                <button type="submit" title="Sign in through Facebook" class="si-reg-btn si-reg-fb-btn">
+                    Sign in through Facebook <i class="fa fa-lg fa-facebook"></i>
+                </button>
             </form>
-            <hr>
-            <form class='local-signin-form' action='/signin' method='POST'>
-                <input type='text' name='email' class='signin-input' placeholder='Email address'>
-                <input type='password' name='password' class='signin-input' placeholder='Password'>
-                <button type='submit' class='signin-btn local-signin-btn'>Sign in</button>
+            <hr>or</hr>
+            <form class='local-si-reg-form' action='/signin' method='POST'>
+                <input type='email' name='email' class='si-reg-input' placeholder='Email address'>
+                <input type='password' name='password' class='si-reg-input' placeholder='Password'>
+                <button type='submit' class='si-reg-btn local-si-reg-btn'>Sign in</button>
             </form>
             <div class='signin-bottom-links'>
                 <a href='/reset_password'>I've forgotten my password</a>
-                <a href='/register'>New? Sign up!</a>
             </div>
         </div>
-        
-        
         
         <footer><% include ../partials/footer %></footer>
     </body>

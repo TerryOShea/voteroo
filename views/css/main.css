@@ -43,7 +43,8 @@ header {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-image: url('/views/images/pollos.png');
-  background-position: -45px -18px;
+  background-size: 294px;
+  background-position: -42px -15px;
 }
 
 .h-t-non-o {
@@ -123,19 +124,24 @@ footer {
   color: #999;
 }
 
+.add-poll-btn > i, .disabled-btn > i {
+  margin-left: 5px;
+}
+
 .disabled-btn:hover {
   cursor: not-allowed;
 }
 
 
 
-.signin-container {
+.si-reg-container {
   width: 980px;
   height: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .title {
@@ -143,47 +149,60 @@ footer {
   font: 32px 'Montserrat', sans-serif;
 }
 
-.signin-btn {
+.subtitle {
+  font-style: italic;
+  margin-top: -15px;
+}
+
+.si-reg-btn {
   width: 50vw;
   height: 50px;
   font: 16px 'Open Sans', sans-serif;
-  margin-bottom: 10px;
   border: 0;
   color: #FCFCFC;
 }
 
-.signin-tw-btn {
+.si-reg-btn > i {
+  margin-left: 5px;
+}
+
+.si-reg-tw-btn {
   background: #0084b4;
 }
 
-.signin-fb-btn {
+.si-reg-fb-btn {
+  margin-top: 10px;
   background: #3b5998;
 }
 
-.signin-fb-btn:hover, .signin-tw-btn:hover {
+.si-reg-fb-btn:hover, .si-reg-tw-btn:hover {
   cursor: not-allowed;
 }
 
-.local-signin-btn {
+.local-si-reg-btn {
   background: #FF6461;
 }
 
-.local-signin-form {
+.local-si-reg-btn:hover, .local-si-reg-btn:focus {
+  background: #FF8A87;
+}
+
+.local-si-reg-form {
   display: flex;
   flex-direction: column;
   width: 50vw;
   margin-top: 20px;
 }
 
-.signin-input {
-  height: 50px;
+.si-reg-input {
+  height: 40px;
   font-size: 16px;
   box-sizing: border-box;
   padding: 0 10px;
   margin-bottom: 10px;
 }
 
-.signin-input:focus {
+.si-reg-input:focus {
   outline: 0;
 }
 
@@ -192,6 +211,7 @@ footer {
   display: flex;
   justify-content: space-around;
   width: 50vw;
+  margin-top: 10px;
 }
 
 .signin-bottom-links > a:first-child {
@@ -200,23 +220,44 @@ footer {
 
 
 
+.alert {
+  font: 16px 'Open Sans', sans-serif;
+  text-align: center;
+}
+
+
 
 .poll-container {
-  display: inline-block;
+  width: 980px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.submit-votes {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.submit-options, .submit-vote-btn {
+  font: 14px 'Open Sans', sans-serif;
+  margin: 0 5px;
+}
+
+.graph-container {
   position: relative;
-  height: 600px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  height: 500px;
 }
 
 .label-text {
-  /*text-anchor: middle;*/
+  text-anchor: middle;
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
 
-.poll-center {
+.graph-center {
   position: absolute;
   display: flex;
   align-items: center;
@@ -226,7 +267,7 @@ footer {
   box-sizing: border-box;
 }
 
-.poll-title {
+.graph-title {
   font: 24px 'Open Sans', sans-serif;
   color: #36454f;
   text-align: center;
@@ -243,13 +284,13 @@ footer {
     width: 680px;
   }
   
-  header, .signin-container {
+  header, .si-reg-container {
     width: 640px;
   }
 }
 
 @media screen and (max-width: 680px) {
-  header, .polls-container, .signin-container {
+  header, .polls-container, .si-reg-container {
     width: 100vw;
   }
   
@@ -269,8 +310,12 @@ footer {
     border-radius: 0;
   }
   
-  .signin-btn, .local-signin-form {
+  .si-reg-btn, .local-si-reg-form, .signin-bottom-links {
     width: 80vw;
+  }
+  
+  .signin-bottom-links {
+    justify-content: space-between;
   }
     
     .header-btns-box {

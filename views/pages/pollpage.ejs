@@ -6,17 +6,19 @@
     </head>
     <body>
         <header><% include ../partials/header %></header>
-        <form action='/see_poll' method='POST'>
-            <select name='selected' required>
-                <option value='' disabled selected>Choose an option</option>
-                <% for (var i = 0; i < poll.allvotes.length; i++) { %>
-                    <option value='<%= '{"title": "' + poll.title + '", "index": ' + i + '}' %>'><%= poll.allvotes[i].option %></option>
-                <% } %>
-            </select>
-            <input type='submit' value='VOTE!'>
-        </form>
         <div class='poll-container'>
-            <div class='poll-center' id='thing'></div>
+            <form action='/see_poll' method='POST' class="submit-votes">
+                <select name='selected' class="submit-options" required>
+                    <option value='' disabled selected>Choose an option</option>
+                    <% for (var i = 0; i < poll.allvotes.length; i++) { %>
+                        <option value='<%= '{"title": "' + poll.title + '", "index": ' + i + '}' %>'><%= poll.allvotes[i].option %></option>
+                    <% } %>
+                </select>
+                <button type='submit' class="submit-vote-btn">VOTE!</button>
+            </form>
+            <div class='graph-container'>
+                <div class='graph-center'></div>
+            </div>
         </div>
         <footer><% include ../partials/footer %></footer>
         <script type='text/javascript'>

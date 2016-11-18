@@ -2,19 +2,19 @@ var totalVotes = seedData.reduce((x, y) => x + y.votes, 0);
 
 seedData = seedData.filter(x => x.votes > 0);
 
-var radius = Math.min(300 + totalVotes, 400),
-    innerRadius = 150,
+var radius = 250,
+    innerRadius = 125,
     colorOffset = Math.ceil(Math.random()*10);
 
 //the title in the center of the graph
-d3.select('.poll-center')
+d3.select('.graph-center')
   .style('width', innerRadius*2 + 'px')
   .style('height', innerRadius*2 + 'px')
   .style('transform', 'translate(' + (radius - innerRadius) + 'px, ' + (radius - innerRadius) + 'px)')
-  .html('<h1 class="poll-title">' + seedTitle + '</h1>');
+  .html('<h1 class="graph-title">' + seedTitle + '</h1>');
 
-var pollTitle = d3.select('.poll-title');
-if (totalVotes == 0) pollTitle.html(pollTitle.html() + ' (no votes yet)');
+var graphTitle = d3.select('.graph-title');
+if (totalVotes == 0) graphTitle.html(graphTitle.html() + ' (no votes yet)');
 else {
 
 var color = d3.scale.ordinal()
@@ -29,18 +29,18 @@ var pie = d3.layout.pie()
   .sort(null)
   .value(function(d) { return d.votes });
 
-var svg = d3.select('.poll-container').append('svg')
+var svg = d3.select('.graph-container').append('svg')
   .attr('width', radius*2)
   .attr('height', radius*2)
   .append('g')
     .attr('transform', 'translate(' + radius + ',' + radius + ')')
 
 var mouseover = function(d) {
-  pollTitle.html(d.data.option.toUpperCase() + '<br>(' + (d.data.votes*100/totalVotes).toFixed(2) + '%, ' + d.data.votes + '/' + totalVotes + ' votes)')
+  graphTitle.html(d.data.option.toUpperCase() + '<br>(' + (d.data.votes*100/totalVotes).toFixed(2) + '%, ' + d.data.votes + '/' + totalVotes + ' votes)')
 }
 
 var mouseout = function(d) {
-  pollTitle.html(seedTitle)
+  graphTitle.html(seedTitle)
 }
 
 //the colored arcs
