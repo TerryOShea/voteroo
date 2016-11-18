@@ -7,12 +7,12 @@
             <% if (locals.user) { %>
                 <form action='/add_new_poll' method='GET'>
                     <button type='submit' class='add-poll-btn'>
-                        Add Poll <i class='fa fa-lg fa-plus'></i>
+                        Add Poll <i class='fa fa-plus'></i>
                     </button>
                 </form>
             <% } else { %>
                 <button type='button' class='disabled-btn' title="You must be signed in to add a poll">
-                    Add Poll <i class='fa fa-lg fa-ban'></i>
+                    Add Poll <i class='fa fa-ban'></i>
                 </button>
             <% } %>
             <% for (var i = 0; i < polls.length; i++) { %>

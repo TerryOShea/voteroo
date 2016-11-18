@@ -152,6 +152,8 @@ footer {
 .subtitle {
   font-style: italic;
   margin-top: -15px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .si-reg-btn {
@@ -245,6 +247,16 @@ footer {
   margin: 0 5px;
 }
 
+.submit-options:focus {
+  outline: 0;
+}
+
+.submit-vote-btn {
+  background: #FF6461;
+  color: #FCFCFC;
+  border: 0;
+}
+
 .graph-container {
   position: relative;
   height: 500px;
@@ -274,6 +286,31 @@ footer {
 }
 
 
+
+.profile-container {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  width: 980px;
+  margin: 0 auto;
+}
+
+.delete-poll-btn {
+  position: relative;
+  margin-left: -60px;
+  margin-top: 30px;
+  background: #EFEFEF;
+  color: #FF6461;
+  border: 0;
+  font: 14px 'Open Sans', sans-serif;
+  text-align: right;
+  overflow-x: hidden;
+  padding: 5px 10px;
+}
+
+.delete-poll-btn:hover {
+  background: #FF6461;
+  color: #EFEFEF;
+}
 
 
 
