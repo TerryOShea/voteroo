@@ -5,6 +5,7 @@ module.exports = (app, Polls, passport) => {
         .get(isLoggedIn, (req, res) => {
             Polls.find({}, (err, polls) => {
                 if (err) throw err;
+                //console.log(polls[0].id);
                 res.render('pages/index', { polls: polls });
             });
         });
@@ -62,20 +63,23 @@ module.exports = (app, Polls, passport) => {
     
     app.route('/see_poll')
         .get(isLoggedIn, (req, res) => {
-            Polls.find({ title: req.query.title }, (err, poll) => {
+            Polls.findOne({ _id: req.query.id }, (err, poll) => {
                 if (err) throw err;
-                res.render('pages/pollpage', { poll: poll[0] });
+                res.render('pages/pollpage', { poll: poll });
             });
         })
         .post((req, res) => {
             var pollinfo = JSON.parse(req.body.selected);
-            Polls.find({ title: pollinfo.title }, (err, poll) => {
+            Polls.findOneAndUpdate({ _id: pollinfo.id, "allvotes.option": pollinfo.option }, { $inc: { "allvotes.$.votes" : 1 } }, function(err) {
                 if (err) throw err;
-                var currVotes = poll[0].allvotes;
-                currVotes[pollinfo.index].votes += 1;
-                Polls.update({ title: pollinfo.title }, { $set: { allvotes: currVotes } }, function(err) {
-                    if (err) throw err;
-                });
+            });
+            res.redirect(req.get('referer'));
+        });
+    
+    app.route('/custom_option')
+        .post((req, res) => {
+            Polls.findOneAndUpdate({ _id: req.body.id }, { $push: { allvotes: { votes: 1, option: req.body.newoption } } }, function(err) {
+                if (err) throw err;
             });
             res.redirect(req.get('referer'));
         });
@@ -88,13 +92,16 @@ module.exports = (app, Polls, passport) => {
             var title = req.body.title.trim(), 
                 options = req.body.options.filter(x => x !== '');
                 //if options is a string
+                //make sure options are unique
                 //options = req.body.options;
+            
 
             var poll = new Polls({ title: title, 
-                                   allvotes: options.map(function(opt) { return { option: opt, votes: 0 } }), 
+                                   allvotes: options.map(function(a) { return { option: a, votes: 0 } }), 
                                    owner: req.user.local.email });
             poll.save(function(err, poll) {
                 if (err) throw err;
+                console.log(poll);
             });
             res.redirect('/');
         });

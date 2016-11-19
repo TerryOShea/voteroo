@@ -1,3 +1,11 @@
+var customOptionToggleBtn = document.querySelector('.custom-option-toggle-btn'), 
+    customOptionForm = document.querySelector('.custom-option-form');
+
+customOptionToggleBtn.addEventListener('click', function() {
+  this.style.display = "none";
+  customOptionForm.style.display = "block";
+});
+
 var totalVotes = seedData.reduce((x, y) => x + y.votes, 0);
 
 seedData = seedData.filter(x => x.votes > 0);

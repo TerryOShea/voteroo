@@ -6,18 +6,18 @@
         <div class='polls-container'>
             <% if (locals.user) { %>
                 <form action='/add_new_poll' method='GET'>
-                    <button type='submit' class='add-poll-btn'>
+                    <button type='submit' class='major-btn add-poll-btn'>
                         Add Poll <i class='fa fa-plus'></i>
                     </button>
                 </form>
             <% } else { %>
-                <button type='button' class='disabled-btn' title="You must be signed in to add a poll">
+                <button type='button' class='minor-btn disabled-btn' title="You must be signed in to add a poll">
                     Sign in to add a poll <i class='fa fa-ban'></i>
                 </button>
             <% } %>
             <% for (var i = 0; i < polls.length; i++) { %>
                 <form action='/see_poll' method='GET'>
-                    <button type='submit' name='title' value='<%= polls[i].title %>' class='poll-btn'><%= polls[i].title %></button>
+                    <button type='submit' name='id' value='<%= polls[i].id %>' class='minor-btn poll-btn'><%= polls[i].title %></button>
                 </form>
             <% } %>
         </div>

@@ -8,12 +8,12 @@
         <div class='profile-container'>
             <% for (var i = 0; i < polls.length; i++) { %>
                 <form action='/see_poll' method='GET'>
-                    <button type='submit' name='title' value='<%= polls[i].title %>' class='poll-btn'>
+                    <button type='submit' name='title' value='<%= polls[i].title %>' class='minor-btn poll-btn'>
                         <%= polls[i].title %>
                     </button>
                 </form>
                 <form action='/delete_poll' method='GET'>
-                    <button type='submit' class='delete-poll-btn' name='title' value='<%= polls[i].title %>'><i class='fa fa-close'></i></button>
+                    <button type='submit' class='minor-btn delete-poll-btn' name='title' value='<%= polls[i].title %>'><i class='fa fa-close'></i></button>
                 </form>
             <% } %>
         </div>
