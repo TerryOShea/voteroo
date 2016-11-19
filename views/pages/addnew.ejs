@@ -3,11 +3,21 @@
     <head><% include ../partials/head %></head>
     <body>
         <header><% include ../partials/header %></header>
-        <form action='/add_new_poll' method='POST' class='poll-form'>
-            Title: <input type='text' name='title'>
-            Options (comma-separated): <input type='text' name='options'>
-            <input type='submit' value='Submit'>
-        </form>
+        
+        <div class="addnew-container">
+            <h1 class='title'>Add Poll</h1>
+            <form action='/add_new_poll' method='POST' class='addnew-form'>
+                <input type='text' name='title' placeholder='Title' class='addnew-poll-title' autofocus>
+                <div class='options-container'>
+                    <button type='button' class='add-option-btn'>+</button>
+                    <div class='addnew-options-box'>
+                        <input type='text' name='options' class='addnew-option' placeholder='Option 1'>
+                    </div>
+                    <button type='submit' class='addnew-submit-btn'>Submit</button>
+                </div>
+            </form>
+        </div>
+        <script src="/views/scripts/addnew.js" rel="script" type="text/javascript"></script>
         <footer><% include ../partials/footer %></footer>
     </body>
 </html>

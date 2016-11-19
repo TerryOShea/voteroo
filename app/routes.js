@@ -85,8 +85,13 @@ module.exports = (app, Polls, passport) => {
             res.render('pages/addnew');
         })
         .post(mustBeLoggedIn, (req, res) => {
-            var poll = new Polls({ title: req.body.title.trim(), 
-                                   allvotes: req.body.options.split(',').map(function(opt) { return { option: opt, votes: 0 } }), 
+            var title = req.body.title.trim(), 
+                options = req.body.options.filter(x => x !== '');
+                //if options is a string
+                //options = req.body.options;
+
+            var poll = new Polls({ title: title, 
+                                   allvotes: options.map(function(opt) { return { option: opt, votes: 0 } }), 
                                    owner: req.user.local.email });
             poll.save(function(err, poll) {
                 if (err) throw err;

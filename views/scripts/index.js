@@ -1,14 +1,9 @@
 var menu = document.getElementById('menu'), 
     menuBtn = document.getElementById('menu-btn'), 
-    showing = false;
+    closeMenuBtn = document.getElementById('close-menu-btn');
 
-menuBtn.addEventListener('click', function() {
-    if (showing) {
-        menu.style.right = "0px";
-        showing = false;
-    }
-    else {
-        menu.style.right = "-200px";
-        showing = true;
-    }
-})
+menuBtn.addEventListener('click', function() { menu.style.right = "0px"; });
+closeMenuBtn.addEventListener('click', function() { menu.style.right = "-680px" });
+
+//if screen widened, menu goes away
+//click on dark to close

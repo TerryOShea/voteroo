@@ -11,12 +11,13 @@ button:hover {
   cursor: pointer;
 }
 
-button:focus {
+button:focus, input:focus {
   outline: 0;
 }
 
 
 /*condense containers*/
+/*primary, secondary buttons*/
 
 
 header {
@@ -73,16 +74,31 @@ header {
   display: none;
 }
 
+.close-menu-btn {
+  
+}
+
 .menu {
   position: absolute;
-  right: -200px;
+  right: -680px;
   top: 0;
   width: 200px;
   height: 100vh;
-  background: #6D8BED;
+  background: purple;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.menu::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 200px;
+  height: 100vh;
+  width: 480px;
+  background: black;
+  opacity: .3;
 }
 
 footer {
@@ -204,10 +220,6 @@ footer {
   margin-bottom: 10px;
 }
 
-.si-reg-input:focus {
-  outline: 0;
-}
-
 .signin-bottom-links {
   font: 14px 'Open Sans', sans-serif;
   display: flex;
@@ -245,10 +257,6 @@ footer {
 .submit-options, .submit-vote-btn {
   font: 14px 'Open Sans', sans-serif;
   margin: 0 5px;
-}
-
-.submit-options:focus {
-  outline: 0;
 }
 
 .submit-vote-btn {
@@ -314,6 +322,72 @@ footer {
 
 
 
+.addnew-container {
+  width: 980px;
+  margin: 0 auto;
+}
+
+.addnew-form {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.options-container {
+  margin: 20px auto;
+  width: 50vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.add-option-btn {
+  width: 40px;
+  height: 40px;
+  font: 16px 'Open Sans', sans-serif;
+  background: #EFEFEF;
+  border: 0;
+}
+
+.add-option-btn:hover {
+  background: #FF6461;
+  color: #FCFCFC;
+}
+
+.addnew-poll-title {
+  width: 50vw;
+}
+
+.addnew-option, .addnew-poll-title {
+  height: 40px;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.addnew-option {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.addnew-options-box {
+  margin: 0 10px;
+  width: 40vw;
+}
+
+.addnew-submit-btn {
+  background: #FF6461;
+  color: #FCFCFC;
+  font: 16px 'Open Sans', sans-serif;
+  padding: 10px 15px;
+  border: 0;
+  height: 40px;
+}
+
+.addnew-submit-btn:hover, .addnew-submit-btn:focus {
+  background: #FF8A87;
+}
+
 
 
 @media screen and (max-width: 1060px) {
@@ -321,13 +395,13 @@ footer {
     width: 680px;
   }
   
-  header, .si-reg-container {
+  header, .si-reg-container, .addnew-container {
     width: 640px;
   }
 }
 
 @media screen and (max-width: 680px) {
-  header, .polls-container, .si-reg-container {
+  header, .polls-container, .si-reg-container, .addnew-container {
     width: 100vw;
   }
   
@@ -347,8 +421,12 @@ footer {
     border-radius: 0;
   }
   
-  .si-reg-btn, .local-si-reg-form, .signin-bottom-links {
+  .si-reg-btn, .local-si-reg-form, .signin-bottom-links, .addnew-poll-title, .options-container {
     width: 80vw;
+  }
+  
+  .addnew-options-box {
+    width: 50vw;
   }
   
   .signin-bottom-links {

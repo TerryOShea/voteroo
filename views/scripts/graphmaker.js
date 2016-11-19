@@ -4,7 +4,8 @@ seedData = seedData.filter(x => x.votes > 0);
 
 var radius = 250,
     innerRadius = 125,
-    colorOffset = Math.ceil(Math.random()*10);
+    colorOffset = Math.ceil(Math.random()*360), 
+    colorSpaced = Math.floor(360/seedData.length);
 
 //the title in the center of the graph
 d3.select('.graph-center')
@@ -17,9 +18,9 @@ var graphTitle = d3.select('.graph-title');
 if (totalVotes == 0) graphTitle.html(graphTitle.html() + ' (no votes yet)');
 else {
 
-var color = d3.scale.ordinal()
-  .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-  .range(['#FF7F50', '#BDEC90', '#FBB148', '#95E5C2', '#C9A1B9', '#F3E5AB', '#886280', '#EE6363', '#ADD8E6', '#6D8BED']);
+/*var color = d3.scaleLinear()
+  .domain([0, 360])
+  .range(['#FF7F50', '#BDEC90', '#FBB148', '#95E5C2', '#C9A1B9', '#F3E5AB', '#886280', '#EE6363', '#ADD8E6', '#6D8BED']);*/
 
 var arc = d3.svg.arc()
   .outerRadius(radius)
@@ -52,7 +53,9 @@ var g = svg.selectAll('.arc')
     .on('mouseout', (d) => mouseout(d))
     .append('path')
       .attr('d', arc)
-      .attr('fill', (d, i) => color((i+colorOffset)%10));
+      /*.attr('fill', (d, i) => color((i*colorSpaced+colorOffset)%360));*/
+      /*.attr('fill', (d, i) => (i*colorSpaced+colorOffset)%360);*/
+      .attr('fill', (d, i) => "hsl(" + ((i * colorSpaced + colorOffset) % 360) + ", 80%, 70%)");
 
 //the labels (done separately so that arcs do not overlap them)
 var h = svg.selectAll('.label')

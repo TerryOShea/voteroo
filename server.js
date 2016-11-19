@@ -15,10 +15,10 @@ var app = express();
 var Polls = require('./app/models/poll');
 
 mongoose.connect(process.env.MONGOLAB_URI, (err) => {
-	if (err) return console.log(err)
-	else console.log('Mongoose successfully connected.');
+    if (err) return console.log(err)
+    else console.log('Mongoose successfully connected.');
 	
-	require('./config/passport')(passport);
+    require('./config/passport')(passport);
 	
     app.set('view engine', 'ejs');
     
