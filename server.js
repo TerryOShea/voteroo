@@ -6,7 +6,8 @@ var express = require('express'),
     mongoose = require('mongoose'), 
     passport = require('passport'), 
     flash = require('connect-flash'), 
-    session = require('express-session');
+    session = require('express-session'), 
+    favicon = require('serve-favicon');
 
 require('dotenv').config({ silent: true });
 
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGOLAB_URI, (err) => {
 	
     app.set('view engine', 'ejs');
     
+    app.use(favicon(__dirname + '/favicon.png'));
     app.use('/views', express.static(process.cwd() + '/views'));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(session({ secret: 'gveikcisdxhbrmyedcazxyxdcrshhnduffu', resave: false, saveUninitialized: false }));
