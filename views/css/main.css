@@ -222,7 +222,7 @@ footer {
 
 
 
-.poll-container {
+.pollpage-container {
   width: 980px;
   margin: 30px auto;
   display: flex;
@@ -268,10 +268,7 @@ footer {
   margin-right: 5px;
 }
 
-.graph-container {
-  position: relative;
-  height: 500px;
-}
+.graph-container { position: relative;}
 
 .label-text {
   text-anchor: middle;
@@ -371,11 +368,15 @@ footer {
 @media screen and (max-width: 1060px) {
   .polls-container { width: 680px; }
   
-  header, .si-reg-container, .addnew-container { width: 640px; }
+  header, .si-reg-container, .addnew-container, .pollpage-container { width: 640px; }
+  
+  .pollpage-container { flex-direction: column; align-items: center; }
+  
+  .graph-container { order: -1; margin-bottom: 20px; }
 }
 
 @media screen and (max-width: 680px) {
-  header, .polls-container, .si-reg-container, .addnew-container, .poll { width: 100vw; }
+  header, .polls-container, .si-reg-container, .addnew-container, .poll, .pollpage-container { width: 100vw; }
   
   .si-reg-btn, .local-si-reg-form, .signin-bottom-links, .addnew-poll-title, .options-container { width: 80vw; }
   
