@@ -77,7 +77,7 @@ module.exports = (app, Polls, passport) => {
         });
     
     app.route('/custom_option')
-        .post((req, res) => {
+        .post(mustBeLoggedIn, (req, res) => {
             Polls.findOneAndUpdate({ _id: req.body.id }, { $push: { allvotes: { votes: 1, option: req.body.newoption } } }, function(err) {
                 if (err) throw err;
             });

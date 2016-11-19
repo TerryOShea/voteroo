@@ -19,12 +19,18 @@
                     </select>
                     <button type='submit' class="major-btn submit-vote-btn">VOTE!</button>
                 </form>
-                <button type="button" class='minor-btn custom-option-toggle-btn'>Or add your own</button>
-                <form action='/custom_option' method='POST' class="custom-option-form">
-                    <input type='hidden' name='id' value='<%= poll.id %>'>
-                    <input type='text' name='newoption' class='custom-option' placeholder='Your option'>
-                    <button type='submit' class='minor-btn'>add</button>
-                </form>
+                <% if (locals.user) { %>
+                    <button type="button" class='minor-btn custom-option-toggle-btn'>Or add your own</button>
+                    <form action='/custom_option' method='POST' class="custom-option-form">
+                        <input type='hidden' name='id' value='<%= poll.id %>'>
+                        <input type='text' name='newoption' class='custom-option' placeholder='Your option'>
+                        <button type='submit' class='minor-btn'>add</button>
+                    </form>
+                <% } else { %>
+                    <button type="button" class='minor-btn custom-option-toggle-btn disabled-btn' title='You must be signed in to add an option'>
+                        Or add your own<i class="fa fa-ban"></i>
+                    </button>
+                <% } %>
             </div>
             
             <div class='graph-container'>

@@ -117,7 +117,7 @@ footer {
   width: 1020px;
 }
 
-.poll-btn, .add-poll-btn, .disabled-btn {
+.poll-btn, .add-poll-btn {
   height: 200px;
   width: 300px;
   text-align: center;
@@ -132,6 +132,12 @@ footer {
 
 .disabled-btn:hover {
   cursor: not-allowed;
+  background: #EFEFEF;
+  color: #999;
+}
+
+.disabled-btn:focus {
+  pointer-events: none
 }
 
 
@@ -250,6 +256,8 @@ footer {
   text-decoration: underline;
 }
 
+.custom-option-toggle-btn > i { margin-left: 4px; }
+
 .custom-option-form {
   display: none;
 }
@@ -278,7 +286,7 @@ footer {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 20px solid #FCFCFC;
+  border: 20px solid transparent;
   box-sizing: border-box;
 }
 
@@ -389,7 +397,7 @@ footer {
     flex-direction: column;
   }
   
-  .poll-btn, .add-poll-btn, .disabled-btn {
+  .poll-btn, .add-poll-btn {
     margin: 0;
     width: 100vw;
     height: 100px;
