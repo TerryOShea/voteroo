@@ -2,7 +2,7 @@
 <html>
     <head><% include ../partials/head %></head>
     <body>
-        <header><% include ../partials/header %></header>
+        <% include ../partials/header %>
         
         <% if (message.length > 0) { %>
             <div class='alert'><%= message %></div>
@@ -10,7 +10,7 @@
         
         <div class='si-reg-container'>
             <h1 class="title">Sign In</h1>
-            <h4 class="subtitle">( New? <a href='/register'>Register here →</a> )</h4>
+            <h4 class="subtitle">( New? <a href='/register' title='Register'>Register here →</a> )</h4>
             <form action='/auth/twitter' method='GET'>
                 <button type="submit" title="Sign in through Twitter" class="major-btn si-reg-btn si-reg-tw-btn">
                     Sign in through Twitter <i class="fa fa-lg fa-twitter"></i>
@@ -25,11 +25,11 @@
             <form class='local-si-reg-form' action='/signin' method='POST'>
                 <input type='email' name='email' class='si-reg-input' placeholder='Email address' autofocus>
                 <input type='password' name='password' class='si-reg-input' placeholder='Password'>
-                <button type='submit' class='major-btn si-reg-btn local-si-reg-btn'>Sign in</button>
+                <button type='submit' class='major-btn si-reg-btn local-si-reg-btn' title='Sign in'>Sign in</button>
             </form>
-            <a class='forgot-password-link' href='/forgot_password'>I've forgotten my password</a>
+            <a class='forgot-password-link' href='/forgot_password' title="I've forgotten my password">I've forgotten my password</a>
         </div>
         
-        <footer><% include ../partials/footer %></footer>
+        <% include ../partials/footer %>
     </body>
 </html>

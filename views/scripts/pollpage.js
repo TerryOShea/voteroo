@@ -57,7 +57,12 @@ function drawPoll() {
     .html('<h1 class="graph-title">' + seedTitle + '</h1>');
 
   var graphTitle = d3.select('.graph-title');
-  if (totalVotes == 0) graphTitle.html(graphTitle.html() + ' (no votes yet)');
+  if (totalVotes == 0) { 
+    graphTitle.html(graphTitle.html() + ' (no votes yet)'); 
+    let gc = document.querySelector('.graph-container');
+    gc.style.width = radius*2 + 'px';
+    gc.style.height = radius*2 + 'px';
+  }
   else {
     var arc = d3.svg.arc()
       .outerRadius(radius)
@@ -90,8 +95,6 @@ function drawPoll() {
         .on('mouseout', (d) => mouseout(d))
         .append('path')
           .attr('d', arc)
-          /*.attr('fill', (d, i) => color((i*colorSpaced+colorOffset)%360));*/
-          /*.attr('fill', (d, i) => (i*colorSpaced+colorOffset)%360);*/
           .attr('fill', (d, i) => "hsl(" + ((i * colorSpaced + colorOffset) % 360) + ", 80%, 70%)");
 
     //the labels (done separately so that arcs do not overlap them)

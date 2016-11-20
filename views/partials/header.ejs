@@ -1,11 +1,13 @@
-<form action='/' method='GET'>
-    <button class='header-title' title='Home' type="submit">
-        <span class='h-t-non-o'>V</span><span class='h-t-o'>o<span class='h-t-non-o'>ter</span>oo</span>
-    </button>
-</form>
-<div class='header-btns-box'><% include ../partials/headerbuttons %></div>
-<button class="menu-btn header-btn" id="menu-btn"><i class="fa fa-bars"></i></button>
-<div class="menu" id="menu">
-    <button class="close-menu-btn" id="close-menu-btn"><i class="fa fa-close"></i></button>
+<div class="menu">
     <% include ../partials/headerbuttons %>
 </div>
+<div class='container'>
+    <header>
+        <form action='/' method='GET'>
+            <button class='header-title' title='Home' type="submit">
+                <span class='h-t-non-o'>V</span><span class='h-t-o'>o<span class='h-t-non-o'>ter</span>oo</span>
+            </button>
+        </form>
+        <div class='header-btns-box'><% include ../partials/headerbuttons %></div>
+        <button class="menu-btn header-btn" title='Menu'><i class="fa fa-bars"></i></button>
+    </header>

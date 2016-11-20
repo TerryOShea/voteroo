@@ -2,11 +2,11 @@
 <html>
     <head><% include ../partials/head %></head>
     <body>
-        <header><% include ../partials/header %></header>
+        <% include ../partials/header %>
         <div class='polls-container'>
             <% if (locals.user) { %>
                 <form action='/add_new_poll' method='GET'>
-                    <button type='submit' class='major-btn add-poll-btn'>
+                    <button type='submit' class='major-btn add-poll-btn' title='Add poll'>
                         Add Poll <i class='fa fa-plus'></i>
                     </button>
                 </form>
@@ -17,10 +17,12 @@
             <% } %>
             <% for (var i = 0; i < polls.length; i++) { %>
                 <form action='/see_poll' method='GET'>
-                    <button type='submit' name='id' value='<%= polls[i].id %>' class='minor-btn poll-btn'><%= polls[i].title %></button>
+                    <button type='submit' name='id' value='<%= polls[i].id %>' class='minor-btn poll-btn' title='<%= polls[i].title %>'>
+                        <%= polls[i].title %>
+                    </button>
                 </form>
             <% } %>
         </div>
-        <footer><% include ../partials/footer %></footer>
+        <% include ../partials/footer %>
     </body>
 </html>

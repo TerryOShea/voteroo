@@ -2,21 +2,28 @@
 <html>
     <head><% include ../partials/head %></head>
     <body>
-        <header><% include ../partials/header %></header>
+        <% include ../partials/header %>
         <h1 class='title'>Welcome, <%= user.local.firstname %>!</h1>
         <h4 class='subtitle'>My polls:</h4>
         <div class='profile-container'>
+            <form action='/add_new_poll' method='GET'>
+                <button type='submit' class='major-btn add-poll-btn' title='Add poll'>
+                    Add Poll <i class='fa fa-plus'></i>
+                </button>
+            </form>
             <% for (var i = 0; i < polls.length; i++) { %>
                 <form action='/see_poll' method='GET'>
-                    <button type='submit' name='title' value='<%= polls[i].title %>' class='minor-btn poll-btn'>
+                    <button type='submit' name='id' value='<%= polls[i].id %>' class='minor-btn poll-btn' title='<%= polls[i].title %>'>
                         <%= polls[i].title %>
                     </button>
                 </form>
                 <form action='/delete_poll' method='GET'>
-                    <button type='submit' class='minor-btn delete-poll-btn' name='title' value='<%= polls[i].title %>'><i class='fa fa-close'></i></button>
+                    <button type='submit' class='minor-btn delete-poll-btn' name='title' value='<%= polls[i].title %>' title='Delete poll'>
+                        <i class='fa fa-close'></i>
+                    </button>
                 </form>
             <% } %>
         </div>
-        <footer><% include ../partials/footer %></footer>
+        <% include ../partials/footer %>
     </body>
 </html>

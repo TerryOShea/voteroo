@@ -2,22 +2,21 @@
 <html>
     <head><% include ../partials/head %></head>
     <body>
-        <header><% include ../partials/header %></header>
-        
+        <% include ../partials/header %>
         <div class="addnew-container">
             <h1 class='title'>Add Poll</h1>
             <form action='/add_new_poll' method='POST' class='addnew-form'>
                 <input type='text' name='title' placeholder='Title' class='addnew-poll-title' autofocus>
                 <div class='options-container'>
-                    <button type='button' class='minor-btn add-option-btn'>+</button>
+                    <button type='button' class='minor-btn add-option-btn' title='Add option'>+</button>
                     <div class='addnew-options-box'>
                         <input type='text' name='options' class='addnew-option' placeholder='Option 1'>
                     </div>
-                    <button type='submit' class='major-btn addnew-submit-btn'>Submit</button>
+                    <button type='submit' class='major-btn addnew-submit-btn' title='Submit'>Submit</button>
                 </div>
             </form>
         </div>
         <script src="/views/scripts/addnew.js" rel="script" type="text/javascript"></script>
-        <footer><% include ../partials/footer %></footer>
+        <% include ../partials/footer %>
     </body>
 </html>

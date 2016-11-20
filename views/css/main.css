@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background: #FCFCFC;
+  overflow-x: hidden;
 }
 
 button {
@@ -23,8 +24,10 @@ button:focus, input:focus { outline: 0; }
 
 
 
-/*condense containers*/
-
+.container {
+  min-height: 100vh;
+  position: absolute;
+}
 
 
 header {
@@ -71,34 +74,35 @@ header {
 
 .menu-btn {
   display: none;
-}
-
-.close-menu-btn {
-  
+  z-index: 10;
 }
 
 .menu {
   position: absolute;
   right: -680px;
   top: 0;
-  width: 200px;
+  width: 250px;
   height: 100vh;
-  background: purple;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  z-index: 5;
+  box-sizing: border-box;
+  border-left: 1px solid black;
 }
 
 .menu::after {
   content: '';
   position: absolute;
   top: 0;
-  right: 200px;
-  height: 100vh;
-  width: 480px;
-  background: black;
-  opacity: .3;
+  right: 250px;
+  width: 430px;
+  height: 100%;
+  background: transparent;
 }
+
+
 
 footer {
   font-family: 'Open Sans', sans-serif;
@@ -261,7 +265,7 @@ footer {
   margin-right: 5px;
 }
 
-.graph-container { position: relative;}
+.graph-container { position: relative; }
 
 .label-text {
   text-anchor: middle;
@@ -290,7 +294,8 @@ footer {
 .profile-container {
   font-family: 'Open Sans', sans-serif;
   display: flex;
-  width: 980px;
+  flex-wrap: wrap;
+  width: 1020px;
   margin: 0 auto;
 }
 
@@ -358,7 +363,7 @@ footer {
 
 
 @media screen and (max-width: 1060px) {
-  .polls-container { width: 680px; }
+  .polls-container, .profile-container { width: 680px; }
   
   header, .si-reg-container, .addnew-container, .pollpage-container { width: 640px; }
   
@@ -369,10 +374,12 @@ footer {
   .graph-title { font-size: 20px; }
   
   .label-text { font-size: 14px; }
+  
+  .votes-box { margin: 0 auto; }
 }
 
 @media screen and (max-width: 680px) {
-  header, .polls-container, .si-reg-container, .addnew-container, .poll, .pollpage-container { width: 100vw; }
+  header, .polls-container, .si-reg-container, .addnew-container, .poll, .pollpage-container, .profile-container { width: 100vw; }
   
   .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container { width: 80vw; }
   
@@ -387,7 +394,9 @@ footer {
   .graph-title { font-size: 16px; }
   
   .label-text { font-size: 12px; }
-    
+  
+  .menu-btn { display: block; }
+  
   .menu > .header-btn {
     width: 180px;
     margin: 0 auto;
@@ -405,5 +414,8 @@ footer {
     border-radius: 0;
   }
 
-  .menu-btn { display: block; }
+  .menu > form > button { 
+    width: 210px; 
+    margin: 5px 0; 
+  }
 }

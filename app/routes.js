@@ -10,8 +10,7 @@ module.exports = (app, Polls, passport) => {
         .get(isLoggedIn, (req, res) => {
             Polls.find({}, (err, polls) => {
                 if (err) throw err;
-                //console.log(polls[0].id);
-                res.render('pages/index', { polls: polls });
+                res.render('pages/index', { polls: polls, title: 'Home' });
             });
         });
     
@@ -19,13 +18,13 @@ module.exports = (app, Polls, passport) => {
         .get(mustBeLoggedIn, (req, res) => {
             Polls.find({ owner: req.user.local.email }, (err, polls) => {
                 if (err) throw err;
-                res.render('pages/profile', { polls: polls } );
+                res.render('pages/profile', { polls: polls, title: 'Profile' } );
             });
         });
     
     app.route('/signin')
         .get((req, res) => {
-            res.render('pages/signin', { message: req.flash('signinMessage') });
+            res.render('pages/signin', { message: req.flash('signinMessage'), title: 'Sign in' });
         })
         .post(passport.authenticate('local-signin', {
             successRedirect: '/profile', 
@@ -58,7 +57,7 @@ module.exports = (app, Polls, passport) => {
     
     app.route('/register')
         .get((req, res) => {
-            res.render('pages/register', { message: req.flash('registerMessage') });
+            res.render('pages/register', { message: req.flash('registerMessage'), title: 'Register' });
         })
         .post(passport.authenticate('local-register', {
             successRedirect: '/profile', 
@@ -70,7 +69,7 @@ module.exports = (app, Polls, passport) => {
         .get(isLoggedIn, (req, res) => {
             Polls.findOne({ _id: req.query.id }, (err, poll) => {
                 if (err) throw err;
-                res.render('pages/pollpage', { poll: poll });
+                res.render('pages/pollpage', { poll: poll, title: 'See poll' });
             });
         })
         .post((req, res) => {
@@ -85,13 +84,13 @@ module.exports = (app, Polls, passport) => {
         .post(mustBeLoggedIn, (req, res) => {
             Polls.findOneAndUpdate({ _id: req.body.id }, { $push: { allvotes: { votes: 1, option: req.body.newoption } } }, function(err) {
                 if (err) throw err;
+                res.redirect(req.get('referer'));
             });
-            res.redirect(req.get('referer'));
         });
     
     app.route('/add_new_poll')
         .get(mustBeLoggedIn, (req, res) => {
-            res.render('pages/addnew');
+            res.render('pages/addnew', { title: 'Add new poll' });
         })
         .post(mustBeLoggedIn, (req, res) => {
             var title = req.body.title.trim(), 
@@ -121,7 +120,7 @@ module.exports = (app, Polls, passport) => {
     
     app.route('/forgot_password')
         .get((req, res) => {
-            res.render('pages/forgotpassword');
+            res.render('pages/forgotpassword', { title: 'Forgot password' });
         })
         .post((req, res, next) => {
             async.waterfall([
@@ -183,7 +182,7 @@ module.exports = (app, Polls, passport) => {
                     req.flash('error', 'Password reset token has expired.');
                     return res.redirect('/forgot_password');
                 }
-                res.render('pages/resetpassword', { id: user.id });
+                res.render('pages/resetpassword', { id: user.id, title: 'Reset password' });
             });
         })
         .post((req, res) => {
