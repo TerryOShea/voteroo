@@ -201,16 +201,9 @@ footer {
   margin-bottom: 10px;
 }
 
-.signin-bottom-links {
+.forgot-password-link {
   font: 14px 'Open Sans', sans-serif;
-  display: flex;
-  justify-content: space-around;
-  width: 50vw;
   margin-top: 10px;
-}
-
-.signin-bottom-links > a:first-child {
-  pointer-events: none
 }
 
 
@@ -273,7 +266,7 @@ footer {
 .label-text {
   text-anchor: middle;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font: 16px 'Open Sans', sans-serif;
   font-weight: 300;
 }
 
@@ -289,7 +282,6 @@ footer {
 
 .graph-title {
   font: 24px 'Open Sans', sans-serif;
-  color: #36454f;
   text-align: center;
 }
 
@@ -373,12 +365,16 @@ footer {
   .pollpage-container { flex-direction: column; align-items: center; }
   
   .graph-container { order: -1; margin-bottom: 20px; }
+  
+  .graph-title { font-size: 20px; }
+  
+  .label-text { font-size: 14px; }
 }
 
 @media screen and (max-width: 680px) {
   header, .polls-container, .si-reg-container, .addnew-container, .poll, .pollpage-container { width: 100vw; }
   
-  .si-reg-btn, .local-si-reg-form, .signin-bottom-links, .addnew-poll-title, .options-container { width: 80vw; }
+  .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container { width: 80vw; }
   
   .addnew-options-box { width: 50vw; }
   
@@ -387,6 +383,10 @@ footer {
   .header-btns-box, .h-t-non-o { display: none; }
   
   .header-title { text-align: left; }
+  
+  .graph-title { font-size: 16px; }
+  
+  .label-text { font-size: 12px; }
     
   .menu > .header-btn {
     width: 180px;
@@ -404,8 +404,6 @@ footer {
     height: 100px;
     border-radius: 0;
   }
-  
-  .signin-bottom-links { justify-content: space-between; }
-    
+
   .menu-btn { display: block; }
 }

@@ -1,5 +1,10 @@
 'use strict';
 
+var async = require('async'), 
+    crypto = require('crypto'), 
+    nodemailer = require('nodemailer'), 
+    User = require('../app/models/user');
+
 module.exports = (app, Polls, passport) => {
     app.route('/')
         .get(isLoggedIn, (req, res) => {
@@ -108,11 +113,91 @@ module.exports = (app, Polls, passport) => {
     
     app.route('/delete_poll')
         .get(mustBeLoggedIn, (req, res) => {
-            console.log(req.query.title);
             Polls.remove({ title: req.query.title }, (err, result) => {
                 if (err) throw err;
                 res.redirect('/profile');
             });
+        });
+    
+    app.route('/forgot_password')
+        .get((req, res) => {
+            res.render('pages/forgotpassword');
+        })
+        .post((req, res, next) => {
+            async.waterfall([
+                function(done) {
+                    crypto.randomBytes(20, (err, buf) => {
+                        let token = buf.toString('hex');
+                        done(err, token);
+                    });
+                }, 
+                function(token, done) {
+                    User.findOneAndUpdate({ "local.email": req.body.email }, 
+                                          { "local.resetPasswordToken": token, "local.resetPasswordExpires": Date.now() + 3600000 }, 
+                                          { new: true }, (err, user) => {
+                        if (err) console.log(err);
+                        if (!user) {
+                            req.flash('error', 'No account with that email address exists.');
+                            return res.redirect('/forgot_password');
+                        }
+                        console.log(user);
+                        done(err, token, user);
+                    });
+                },
+                function(token, user, done) {
+                    var transporter = nodemailer.createTransport({
+                        host: 'smtp.gmail.com',
+                        port: 465, 
+                        secure: true, 
+                        auth: { user: process.env.GMAIL_USERNAME, pass: process.env.GMAIL_PASSWORD }
+                    });
+                    var mailOptions = {
+                        to: user.local.email,
+                        from: 'passwordreset@voteroo.herokuapp.com',
+                        subject: 'Voteroo Password Reset',
+                        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                        'http://' + req.headers.host + '/reset_password/' + token + '\n\n' +
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                    };
+                    transporter.sendMail(mailOptions, (err) => {
+                        req.flash('info', 'An email has been sent to ' + user.email + ' with further instructions.');
+                        done(err, 'done');
+                    });
+                }
+            ], function(err) {
+                if (err) return next(err);
+                res.redirect('/');
+            });
+        });
+    
+    app.route('/reset_password/:token')
+        .get((req, res) => {
+            User.findOne({ "local.resetPasswordToken": req.params.token }, (err, user) => {
+                if (err) console.log(err);
+                if (!user) {
+                    req.flash('error', 'Password reset token is invalid.');
+                    return res.redirect('/forgot_password');
+                }
+                if (user.local.resetPasswordExpires < Date.now()) {
+                    req.flash('error', 'Password reset token has expired.');
+                    return res.redirect('/forgot_password');
+                }
+                res.render('pages/resetpassword', { id: user.id });
+            });
+        })
+        .post((req, res) => {
+            var bcrypt = require('bcrypt-nodejs');
+            
+            if (req.body.password !== req.body.confirmation) {
+                req.flash('error', 'Password and confirmation do not match.');
+                return res.redirect('back');
+            }
+            var passhash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
+            User.findOneAndUpdate({ _id: req.body.id }, { "local.resetPasswordToken": undefined, "local.resetPasswordExpires": undefined, "local.password": passhash }, (err, user) => {
+                if (err) console.log(err);
+                res.send('password updated');
+            })
         });
 };
 
