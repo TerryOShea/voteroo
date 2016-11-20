@@ -16,7 +16,7 @@
                 </button>
             <% } %>
             <% for (var i = 0; i < polls.length; i++) { %>
-                <form action='/see_poll' method='GET'>
+                <form action='/poll' method='GET'>
                     <button type='submit' name='id' value='<%= polls[i].id %>' class='minor-btn poll-btn' title='<%= polls[i].title %>'>
                         <%= polls[i].title %>
                     </button>

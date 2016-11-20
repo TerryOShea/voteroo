@@ -8,7 +8,7 @@
         <% include ../partials/header %>
         <div class='pollpage-container'>
             <div class='votes-box'>
-                <form action='/see_poll' method='POST' class='submit-votes'>
+                <form action='/poll' method='POST' class='submit-votes'>
                     <select name='selected' class="submit-options" required>
                         <option value='' disabled selected>Choose an option</option>
                         <% for (var i = 0; i < poll.allvotes.length; i++) { %>
@@ -31,6 +31,15 @@
                         Or add your own<i class="fa fa-ban"></i>
                     </button>
                 <% } %>
+                <div>
+                    <a class='twitter-share-button' target='_blank'
+                       href='https://twitter.com/intent/tweet?text=<%- poll.title %>%20A%20Voteroo%20poll:%20<%- process.env.BASE_URL %>/poll?id=<%- poll.id %>'>
+                        <button type='button' class='major-btn tweet-btn' title='Tweet (Twitter)'>
+                            <i class='fa fa-twitter'></i> Tweet
+                        </button>
+                    </a>
+                    <button type='button' class='major-btn share-btn' title='Share (Facebook)'><i class='fa fa-facebook'></i> Share</button>
+                </div>
             </div>
             
             <div class='graph-container'>

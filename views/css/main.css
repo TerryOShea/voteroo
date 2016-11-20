@@ -178,7 +178,7 @@ footer {
 }
 
 .si-reg-tw-btn {
-  background: #0084b4;
+  background: #1dcaff;
 }
 
 .si-reg-fb-btn {
@@ -251,6 +251,7 @@ footer {
   width: 100%; 
   background: #FCFCFC;
   text-decoration: underline;
+  margin-bottom: 10px;
 }
 
 .custom-option-toggle-btn > i { margin-left: 4px; }
@@ -264,6 +265,12 @@ footer {
   width: 169px;
   margin-right: 5px;
 }
+
+.twitter-share-button { text-decoration: none; }
+
+.tweet-btn { background: #1dcaff; }
+
+.share-btn { background: #3b5998; }
 
 .graph-container { position: relative; }
 

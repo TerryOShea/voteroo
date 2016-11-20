@@ -65,11 +65,11 @@ module.exports = (app, Polls, passport) => {
             failureFlash: true
         }));
     
-    app.route('/see_poll')
+    app.route('/poll')
         .get(isLoggedIn, (req, res) => {
             Polls.findOne({ _id: req.query.id }, (err, poll) => {
                 if (err) throw err;
-                res.render('pages/pollpage', { poll: poll, title: 'See poll' });
+                res.render('pages/pollpage', { poll: poll, title: 'Poll: ' + poll.title });
             });
         })
         .post((req, res) => {
