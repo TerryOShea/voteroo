@@ -1,7 +1,8 @@
 var menu = document.querySelector('.menu'), 
     menuBtn = document.querySelector('.menu-btn'), 
-    closeMenuBtn = document.querySelector('.close-menu-btn'), 
     container = document.querySelector('.container'), 
+    closeFlashBtn = document.querySelector('.close-flash-btn'), 
+    message = document.querySelector('.message'),
     showing = false;
 
 function toggleMenu() {
@@ -24,3 +25,7 @@ window.addEventListener('resize', function() {
         toggleMenu();
     }
 });
+    
+closeFlashBtn.addEventListener('click', function() {
+    message.style.display = 'none';
+})

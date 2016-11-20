@@ -10,7 +10,7 @@ module.exports = (app, Polls, passport) => {
         .get(isLoggedIn, (req, res) => {
             Polls.find({}, (err, polls) => {
                 if (err) throw err;
-                res.render('pages/index', { polls: polls, title: 'Home' });
+                res.render('pages/index', { polls: polls, title: 'Home', message: req.flash('homeMessage') });
             });
         });
     
@@ -95,19 +95,14 @@ module.exports = (app, Polls, passport) => {
         .post(mustBeLoggedIn, (req, res) => {
             var title = req.body.title.trim(), 
                 options = req.body.options.filter(x => x !== '');
-                //if options is a string
-                //make sure options are unique
-                //options = req.body.options;
-            
 
             var poll = new Polls({ title: title, 
                                    allvotes: options.map(function(a) { return { option: a, votes: 0 } }), 
                                    owner: req.user.local.email });
             poll.save(function(err, poll) {
                 if (err) throw err;
-                console.log(poll);
+                res.redirect('/poll?id=' + poll.id);
             });
-            res.redirect('/');
         });
     
     app.route('/delete_poll')
@@ -120,7 +115,7 @@ module.exports = (app, Polls, passport) => {
     
     app.route('/forgot_password')
         .get((req, res) => {
-            res.render('pages/forgotpassword', { title: 'Forgot password' });
+            res.render('pages/forgotpassword', { title: 'Forgot password', message: req.flash('forgotPasswordMessage') });
         })
         .post((req, res, next) => {
             async.waterfall([
@@ -136,10 +131,9 @@ module.exports = (app, Polls, passport) => {
                                           { new: true }, (err, user) => {
                         if (err) console.log(err);
                         if (!user) {
-                            req.flash('error', 'No account with that email address exists.');
+                            req.flash('forgotPasswordMessage', 'No account with that email address exists.');
                             return res.redirect('/forgot_password');
                         }
-                        console.log(user);
                         done(err, token, user);
                     });
                 },
@@ -160,7 +154,7 @@ module.exports = (app, Polls, passport) => {
                         'If you did not request this, please ignore this email and your password will remain unchanged.\n'
                     };
                     transporter.sendMail(mailOptions, (err) => {
-                        req.flash('info', 'An email has been sent to ' + user.email + ' with further instructions.');
+                        req.flash('homeMessage', 'An email has been sent to ' + user.local.email + ' with further instructions.');
                         done(err, 'done');
                     });
                 }
@@ -175,27 +169,32 @@ module.exports = (app, Polls, passport) => {
             User.findOne({ "local.resetPasswordToken": req.params.token }, (err, user) => {
                 if (err) console.log(err);
                 if (!user) {
-                    req.flash('error', 'Password reset token is invalid.');
+                    req.flash('forgotPasswordMessage', 'Password reset token is invalid. Please get a new one below.');
                     return res.redirect('/forgot_password');
                 }
                 if (user.local.resetPasswordExpires < Date.now()) {
-                    req.flash('error', 'Password reset token has expired.');
+                    req.flash('forgotPasswordMessage', 'Password reset token has expired. Please get a new one below.');
                     return res.redirect('/forgot_password');
                 }
-                res.render('pages/resetpassword', { id: user.id, title: 'Reset password' });
+                res.render('pages/resetpassword', { id: user.id, title: 'Reset password', message: req.flash('resetPasswordMessage') });
             });
         })
         .post((req, res) => {
             var bcrypt = require('bcrypt-nodejs');
             
             if (req.body.password !== req.body.confirmation) {
-                req.flash('error', 'Password and confirmation do not match.');
+                req.flash('resetPasswordMessage', 'Password and confirmation do not match.');
+                return res.redirect('back');
+            }
+            if (req.body.password.length < 6) {
+                req.flash('resetPasswordMessage', 'Password is too short.');
                 return res.redirect('back');
             }
             var passhash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
             User.findOneAndUpdate({ _id: req.body.id }, { "local.resetPasswordToken": undefined, "local.resetPasswordExpires": undefined, "local.password": passhash }, (err, user) => {
                 if (err) console.log(err);
-                res.send('password updated');
+                req.flash('homeMessage', 'Password reset was successful.');
+                res.redirect('/');
             })
         });
 };

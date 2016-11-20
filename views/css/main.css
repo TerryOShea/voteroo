@@ -212,10 +212,27 @@ footer {
 
 
 
-.alert {
+.message {
   font: 16px 'Open Sans', sans-serif;
+  width: 50vw;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
+
+.alert-message {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+.success-message {
+  background: rgba(0, 255, 0, 0.3);
+}
+
+.close-flash-btn { background: transparent; }
 
 
 
@@ -391,7 +408,7 @@ footer {
 @media screen and (max-width: 680px) {
   header, .polls-container, .si-reg-container, .addnew-container, .poll, .pollpage-container, .profile-container { width: 100vw; }
   
-  .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container { width: 80vw; }
+  .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container, .message { width: 80vw; }
   
   .addnew-options-box { width: 50vw; }
   

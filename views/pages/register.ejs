@@ -5,7 +5,7 @@
         <% include ../partials/header %>
 
         <% if (message.length > 0) { %>
-            <div class='alert'><%= message %></div>
+            <div class='message alert-message'><%= message %><button type='button' class='close-flash-btn'><i class='fa fa-close'></i></button></div>
         <% } %>
 
         <div class='si-reg-container'>
@@ -24,10 +24,10 @@
             <hr>or</hr>
 
             <form class='local-si-reg-form' action='/register' method='POST'>
-                <input type='text' class='si-reg-input' name='firstname' placeholder='First name' autofocus>
-                <input type='text' class='si-reg-input' name='lastname' placeholder='Last name'>
-                <input type='email' class='si-reg-input' name='email' placeholder='Email address'>
-                <input type='password' class='si-reg-input' name='password' placeholder='Password'>
+                <input type='text' class='si-reg-input' name='firstname' placeholder='First name' required autofocus>
+                <input type='text' class='si-reg-input' name='lastname' placeholder='Last name' required>
+                <input type='email' class='si-reg-input' name='email' placeholder='Email address' required>
+                <input type='password' class='si-reg-input' name='password' placeholder='Password (6 or more characters)' required>
                 <button type='submit' class='major-btn si-reg-btn local-si-reg-btn' title='Register'>Register</button>
             </form>
         </div>

@@ -25,6 +25,7 @@ module.exports = (passport) => {
             User.findOne({ 'local.email': email }, (err, user) => {
                 if (err) return done(err);
                 if (user) return done(null, false, req.flash('registerMessage', 'That email is already registered!'));
+                if (password.length < 6) return done(null, false, req.flash('registerMessage', 'That password is too short!'));
                 else {
                     var newUser = new User();
                     newUser.local.email = email;
@@ -50,7 +51,7 @@ module.exports = (passport) => {
             User.findOne({ 'local.email': email }, (err, user) => {
                 if (err) return done(err); 
                 if (!user) return done(null, false, req.flash('signinMessage', 
-                    'We couldn\'t find that email address--are you sure you\'re registered?')); 
+                    'We couldn\'t find that email address—are you sure you\'re registered?')); 
                 if (!user.validPassword(password, user.local.password)) return done(null, false, req.flash('signinMessage', 'That password is incorrect!')); 
                 return done(null, user);
             }); 

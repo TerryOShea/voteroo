@@ -3,6 +3,11 @@
     <head><% include ../partials/head %></head>
     <body>
         <% include ../partials/header %>
+        
+        <% if (message.length > 0) { %>
+            <div class='message success-message'><%= message %><button type='button' class='close-flash-btn'><i class='fa fa-close'></i></button></div>
+        <% } %>
+        
         <div class='polls-container'>
             <% if (locals.user) { %>
                 <form action='/add_new_poll' method='GET'>
