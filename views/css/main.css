@@ -266,11 +266,14 @@ footer {
   margin-right: 5px;
 }
 
-.twitter-share-button { text-decoration: none; }
-
 .tweet-btn { background: #1dcaff; }
 
 .share-btn { background: #3b5998; }
+
+.tweet-btn > a, .share-btn > a {
+  text-decoration: none;
+  color: #FCFCFC;
+}
 
 .graph-container { position: relative; }
 

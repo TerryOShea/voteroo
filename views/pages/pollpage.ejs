@@ -32,13 +32,17 @@
                     </button>
                 <% } %>
                 <div>
-                    <a class='twitter-share-button' target='_blank'
-                       href='https://twitter.com/intent/tweet?text=<%- poll.title %>%20A%20Voteroo%20poll:%20<%- process.env.BASE_URL %>/poll?id=<%- poll.id %>'>
-                        <button type='button' class='major-btn tweet-btn' title='Tweet (Twitter)'>
+                    <button type='button' class='major-btn tweet-btn' title='Tweet (Twitter)'>
+                        <a target='_blank'
+                           href='https://twitter.com/intent/tweet?text=<%- poll.title %>%20A%20Voteroo%20poll:%20<%- process.env.BASE_URL %>/poll?id=<%- poll.id %>'>
                             <i class='fa fa-twitter'></i> Tweet
-                        </button>
-                    </a>
-                    <button type='button' class='major-btn share-btn' title='Share (Facebook)'><i class='fa fa-facebook'></i> Share</button>
+                        </a>
+                    </button>
+                    <button class='major-btn share-btn' data-layout='button' data-mobile-iframe='true' title='Share (Facebook)'>
+                        <a class='fb-xfbml-parse-ignore' target='_blank' href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F<%- process.env.BASE_URL %>%2Fpoll%3Fid%3D<%- poll.id %>&amp;src=sdkpreparse'>
+                            <i class='fa fa-facebook'></i> Share
+                        </a>
+                    </button>
                 </div>
             </div>
             
@@ -53,5 +57,6 @@
         </script>
         <script src='/views/scripts/d3.min.js' rel="script" type="text/javascript"></script>
         <script src="/views/scripts/pollpage.js" rel="script" type="text/javascript"></script>
+        <% include ../partials/facebooksdk %>
     </body>
 </html>
