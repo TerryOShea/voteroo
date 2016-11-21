@@ -61,12 +61,14 @@ module.exports = (passport) => {
     passport.use(new FacebookStrategy({
         clientID: configAuth.facebookAuth.clientID, 
         clientSecret: configAuth.facebookAuth.clientSecret, 
-        callbackURL: configAuth.facebookAuth.callbackURL
+        callbackURL: configAuth.facebookAuth.callbackURL, 
+        profileFields: ['email', 'name']
     }, (token, refreshToken, profile, done) => {
         process.nextTick(() => {
             User.findOne({ 'facebook.id': profile.id }, (err, user) => {
                 if (err) return done(err); 
                 if (user) return done(null, user); 
+
                 else {
                     var newUser = new User();
                     newUser.facebook.id = profile.id;

@@ -23,7 +23,7 @@
                     <button type="button" class='minor-btn custom-option-toggle-btn' title='Add an option'>Or add your own</button>
                     <form action='/custom_option' method='POST' class="custom-option-form">
                         <input type='hidden' name='id' value='<%= poll.id %>'>
-                        <input type='text' name='newoption' class='custom-option' placeholder='Your option'>
+                        <input type='text' name='newoption' class='custom-option' placeholder='Your option' maxlength='30' required>
                         <button type='submit' class='minor-btn' title='Add option'>add</button>
                     </form>
                 <% } else { %>

@@ -23,12 +23,12 @@ module.exports = (app, Polls, passport) => {
                 title = req.user.local.firstname + ' ' + req.user.local.lastname + '\'s Profile';
             }
             else if (JSON.stringify(req.user.facebook).length > 2) { 
-                owner = req.user.facebook.email;
+                owner = req.user.facebook.id;
                 name = req.user.facebook.firstname;
                 title = req.user.facebook.firstname + ' ' + req.user.facebook.lastname + '\'s Profile';
             }
             else {
-                owner = req.user.twitter.username;
+                owner = req.user.twitter.id;
                 name = req.user.twitter.displayName;
                 title = req.user.twitter.displayName + '\'s Profile';
             }
@@ -115,8 +115,8 @@ module.exports = (app, Polls, passport) => {
                 
             let owner;
             if (JSON.stringify(req.user.local).length > 2) owner = req.user.local.email;
-            else if (JSON.stringify(req.user.facebook).length > 2) owner = req.user.facebook.email;
-            else owner = req.user.twitter.username;
+            else if (JSON.stringify(req.user.facebook).length > 2) owner = req.user.facebook.id;
+            else owner = req.user.twitter.id;
             
             var poll = new Polls({ title: title, 
                                    allvotes: options.map(function(a) { return { option: a, votes: 0 } }), 
