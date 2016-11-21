@@ -3,7 +3,7 @@
     <head><% include ../partials/head %></head>
     <body>
         <% include ../partials/header %>
-        <h1 class='title'>Welcome, <%= user.local.firstname %>!</h1>
+        <h1 class='title'>Welcome, <%= name %>!</h1>
         <h4 class='subtitle'>My polls:</h4>
         <div class='profile-container'>
             <form action='/add_new_poll' method='GET'>

@@ -16,9 +16,26 @@ module.exports = (app, Polls, passport) => {
     
     app.route('/profile')
         .get(mustBeLoggedIn, (req, res) => {
-            Polls.find({ owner: req.user.local.email }, (err, polls) => {
+            let owner, name, title;
+            if (JSON.stringify(req.user.local).length > 2) { 
+                owner = req.user.local.email; 
+                name = req.user.local.firstname;
+                title = req.user.local.firstname + ' ' + req.user.local.lastname + '\'s Profile';
+            }
+            else if (JSON.stringify(req.user.facebook).length > 2) { 
+                owner = req.user.facebook.email;
+                name = req.user.facebook.firstname;
+                title = req.user.facebook.firstname + ' ' + req.user.facebook.lastname + '\'s Profile';
+            }
+            else {
+                owner = req.user.twitter.username;
+                name = req.user.twitter.displayName;
+                title = req.user.twitter.displayName + '\'s Profile';
+            }
+            
+            Polls.find({ owner: owner }, (err, polls) => {
                 if (err) throw err;
-                res.render('pages/profile', { polls: polls, title: 'Profile' } );
+                res.render('pages/profile', { polls: polls, name: name, title: title });
             });
         });
     
@@ -95,10 +112,15 @@ module.exports = (app, Polls, passport) => {
         .post(mustBeLoggedIn, (req, res) => {
             var title = req.body.title.trim(), 
                 options = req.body.options.filter(x => x !== '');
-
+                
+            let owner;
+            if (JSON.stringify(req.user.local).length > 2) owner = req.user.local.email;
+            else if (JSON.stringify(req.user.facebook).length > 2) owner = req.user.facebook.email;
+            else owner = req.user.twitter.username;
+            
             var poll = new Polls({ title: title, 
                                    allvotes: options.map(function(a) { return { option: a, votes: 0 } }), 
-                                   owner: req.user.local.email });
+                                   owner: owner });
             poll.save(function(err, poll) {
                 if (err) throw err;
                 res.redirect('/poll?id=' + poll.id);

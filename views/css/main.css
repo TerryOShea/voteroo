@@ -187,7 +187,7 @@ footer {
 }
 
 .si-reg-fb-btn:hover, .si-reg-tw-btn:hover {
-  cursor: not-allowed;
+  /*cursor: not-allowed;*/
 }
 
 .local-si-reg-form {
