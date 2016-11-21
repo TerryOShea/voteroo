@@ -18,7 +18,8 @@
                     </button>
                 </form>
                 <form action='/delete_poll' method='GET'>
-                    <button type='submit' class='minor-btn delete-poll-btn' name='title' value='<%= polls[i].title %>' title='Delete poll'>
+                    <button type='submit' class='minor-btn delete-poll-btn' name='title' value='<%= polls[i].title %>' 
+                            title='Delete poll' onclick='return confirm("Are you sure you want to delete \"<%= polls[i].title %>\"?");'>
                         <i class='fa fa-close'></i>
                     </button>
                 </form>
