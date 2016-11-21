@@ -19,9 +19,9 @@ button:focus, input:focus { outline: 0; }
 
 .minor-btn { background: #EFEFEF; }
 
-.major-btn:hover, .major-btn:focus { opacity: 0.8; }
+.major-btn:hover { opacity: 0.8; }
 
-.minor-btn:hover, .minor-btn:focus { background: #FF6461; color: #FCFCFC; }
+.minor-btn:hover { background: #FF6461; color: #FCFCFC; }
 
 .page-container {
   min-height: 100vh;
@@ -63,6 +63,14 @@ button:focus, input:focus { outline: 0; }
 }
 
 .disabled-btn:focus { pointer-events: none }
+
+.form-input {
+  height: 40px;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
 
 
 
@@ -218,14 +226,6 @@ footer {
   margin-top: 20px;
 }
 
-.si-reg-input {
-  height: 40px;
-  font-size: 16px;
-  box-sizing: border-box;
-  padding: 0 10px;
-  margin-bottom: 10px;
-}
-
 .forgot-password-link {
   font: 14px 'Open Sans', sans-serif;
   margin-top: 10px;
@@ -270,7 +270,10 @@ footer {
 
 .custom-option-toggle-btn > i { margin-left: 4px; }
 
-.custom-option-form { display: none; }
+.custom-option-form { 
+  display: none;
+  margin-bottom: 10px;
+}
 
 .custom-option {
   font: 16px 'Open Sans', sans-serif;
@@ -333,10 +336,12 @@ footer {
   justify-content: space-between;
 }
 
-.add-option-btn {
+.add-option-btn, .remove-option-btn {
   width: 40px;
   height: 40px;
 }
+
+.remove-option-btn { margin-top: 10px; }
 
 .addnew-poll-title { width: 50vw; }
 
@@ -365,11 +370,37 @@ footer {
 
 
 
+/* reset password pages styles */
+.forgot-password-container { text-align: center; }
+
+.reset-password-form {
+  width: 50vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reset-password-form > input { width: 100%; }
+
+.forgot-password-btn {
+  width: 80px;
+  height: 39px;
+  margin-left: 10px;
+}
+
+.reset-password-btn {
+  width: 100%;
+  height: 40px;
+}
+
+
+
 /* media queries */
 @media screen and (max-width: 1060px) {
   .polls-container { width: 680px; }
   
-  header, .si-reg-container, .addnew-container, .pollpage-container { width: 640px; }
+  header, .content-container { width: 640px; }
   
   .pollpage-container { 
     flex-direction: column; 
@@ -404,7 +435,7 @@ footer {
     margin: 5px 0; 
   }
   
-  .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container, .message { width: 80vw; }
+  .si-reg-btn, .local-si-reg-form, .reset-password-form, .addnew-poll-title, .options-container, .message { width: 80vw; }
   
   .addnew-options-box { width: 50vw; }
   

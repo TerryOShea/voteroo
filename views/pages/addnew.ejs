@@ -8,10 +8,13 @@
             <form action='/add_new_poll' method='POST' class='addnew-form'>
                 <input type='text' name='title' placeholder='Title' class='addnew-poll-title' maxlength='60' required autofocus>
                 <div class='options-container'>
-                    <button type='button' class='minor-btn add-option-btn' title='Add option'>+</button>
+                    <div>
+                        <button type='button' class='minor-btn add-option-btn' title='Add option'>+</button>
+                        <button type='button' class='minor-btn remove-option-btn' title='Remove option'>-</button>
+                    </div>
                     <div class='addnew-options-box'>
-                        <input type='text' name='options' class='addnew-option' placeholder='Option 1' maxlength='30' required>
-                        <input type='text' name='options' class='addnew-option' placeholder='Option 2' maxlength='30' required>
+                        <input type='text' name='options' class='addnew-option' placeholder='Option 1' maxlength='30' id='option-1' required>
+                        <input type='text' name='options' class='addnew-option' placeholder='Option 2' maxlength='30' id='option-2' required>
                     </div>
                     <button type='submit' class='major-btn addnew-submit-btn' title='Submit'>Submit</button>
                 </div>
