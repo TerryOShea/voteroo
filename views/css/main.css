@@ -1,3 +1,4 @@
+/* general styles */
 body {
   margin: 0;
   background: #FCFCFC;
@@ -22,14 +23,71 @@ button:focus, input:focus { outline: 0; }
 
 .minor-btn:hover, .minor-btn:focus { background: #FF6461; color: #FCFCFC; }
 
-
-
-.container {
+.page-container {
   min-height: 100vh;
   position: absolute;
 }
 
+.content-container {
+  width: 980px;
+  margin: 30px auto;
+}
 
+.polls-container {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 1020px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.title {
+  text-align: center;
+  font: 32px 'Montserrat', sans-serif;
+}
+
+.subtitle {
+  font-style: italic;
+  margin-top: -15px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.disabled-btn { color: #999; }
+
+.disabled-btn:hover {
+  cursor: not-allowed;
+  background: #EFEFEF;
+  color: #999;
+}
+
+.disabled-btn:focus { pointer-events: none }
+
+
+
+/* flash message styles */
+.message {
+  font: 16px 'Open Sans', sans-serif;
+  width: 50vw;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.alert-message { background: rgba(255, 0, 0, 0.3); }
+
+.success-message { background: rgba(0, 255, 0, 0.3); }
+
+.close-flash-btn { background: transparent; }
+
+
+
+/* header, menu, and footer styles */
 header {
   width: 980px;
   height: 100px;
@@ -63,9 +121,7 @@ header {
   -webkit-text-fill-color: #222;
 }
 
-.header-btns-box {
-  display: flex;
-}
+.header-btns-box { display: flex; }
 
 .header-btn {
   margin-left: 15px;
@@ -82,7 +138,7 @@ header {
   right: -680px;
   top: 0;
   width: 250px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,6 +146,7 @@ header {
   z-index: 5;
   box-sizing: border-box;
   border-left: 1px solid black;
+  background: #FCFCFC;
 }
 
 .menu::after {
@@ -102,8 +159,6 @@ header {
   background: transparent;
 }
 
-
-
 footer {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
@@ -113,14 +168,7 @@ footer {
 
 
 
-.polls-container {
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  margin: 0 auto;
-  width: 1020px;
-}
-
+/* styles for the see-poll, add-new-poll, and delete-poll buttons (on the homepage and profile page)*/
 .poll-btn, .add-poll-btn {
   height: 200px;
   width: 300px;
@@ -130,41 +178,22 @@ footer {
   margin: 20px;
 }
 
-.disabled-btn {
-  color: #999;
-}
-
-.disabled-btn:hover {
-  cursor: not-allowed;
-  background: #EFEFEF;
-  color: #999;
-}
-
-.disabled-btn:focus {
-  pointer-events: none
+.delete-poll-btn {
+  position: relative;
+  margin-left: -60px;
+  margin-top: 30px;
+  text-align: right;
+  overflow-x: hidden;
+  padding: 5px 10px;
 }
 
 
 
+/* signin and registration pages styles */
 .si-reg-container {
-  width: 980px;
-  height: 500px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.title {
-  text-align: center;
-  font: 32px 'Montserrat', sans-serif;
-}
-
-.subtitle {
-  font-style: italic;
-  margin-top: -15px;
-  text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -173,21 +202,13 @@ footer {
   height: 50px;
 }
 
-.si-reg-btn > i {
-  margin-left: 5px;
-}
+.si-reg-btn > i { margin-left: 5px; }
 
-.si-reg-tw-btn {
-  background: #1dcaff;
-}
+.si-reg-tw-btn { background: #1dcaff; }
 
 .si-reg-fb-btn {
   margin-top: 10px;
   background: #3b5998;
-}
-
-.si-reg-fb-btn:hover, .si-reg-tw-btn:hover {
-  /*cursor: not-allowed;*/
 }
 
 .local-si-reg-form {
@@ -212,33 +233,8 @@ footer {
 
 
 
-.message {
-  font: 16px 'Open Sans', sans-serif;
-  width: 50vw;
-  padding: 5px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-
-.alert-message {
-  background: rgba(255, 0, 0, 0.3);
-}
-
-.success-message {
-  background: rgba(0, 255, 0, 0.3);
-}
-
-.close-flash-btn { background: transparent; }
-
-
-
+/* styles for each poll's individual page */
 .pollpage-container {
-  width: 980px;
-  margin: 30px auto;
   display: flex;
   justify-content: space-around;
 }
@@ -262,6 +258,7 @@ footer {
 }
 
 .submit-options:focus { outline: 0; }
+
 .submit-vote-btn { margin: 0 0 10px 10px; }
 
 .custom-option-toggle-btn { 
@@ -273,9 +270,7 @@ footer {
 
 .custom-option-toggle-btn > i { margin-left: 4px; }
 
-.custom-option-form {
-  display: none;
-}
+.custom-option-form { display: none; }
 
 .custom-option {
   font: 16px 'Open Sans', sans-serif;
@@ -318,26 +313,7 @@ footer {
 
 
 
-.profile-container {
-  font-family: 'Open Sans', sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  width: 1020px;
-  margin: 0 auto;
-}
-
-.delete-poll-btn {
-  position: relative;
-  margin-left: -60px;
-  margin-top: 30px;
-  text-align: right;
-  overflow-x: hidden;
-  padding: 5px 10px;
-}
-
-
-
-
+/* add-new-poll page styles */
 .addnew-container {
   width: 980px;
   margin: 0 auto;
@@ -389,14 +365,21 @@ footer {
 
 
 
+/* media queries */
 @media screen and (max-width: 1060px) {
-  .polls-container, .profile-container { width: 680px; }
+  .polls-container { width: 680px; }
   
   header, .si-reg-container, .addnew-container, .pollpage-container { width: 640px; }
   
-  .pollpage-container { flex-direction: column; align-items: center; }
+  .pollpage-container { 
+    flex-direction: column; 
+    align-items: center; 
+  }
   
-  .graph-container { order: -1; margin-bottom: 20px; }
+  .graph-container { 
+    order: -1; 
+    margin-bottom: 20px; 
+  }
   
   .graph-title { font-size: 20px; }
   
@@ -406,11 +389,7 @@ footer {
 }
 
 @media screen and (max-width: 680px) {
-  header, .polls-container, .si-reg-container, .addnew-container, .poll, .pollpage-container, .profile-container { width: 100vw; }
-  
-  .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container, .message { width: 80vw; }
-  
-  .addnew-options-box { width: 50vw; }
+  header, .polls-container, .content-container, .poll { width: 100vw; }
   
   header { padding: 0 20px; }
   
@@ -418,16 +397,20 @@ footer {
   
   .header-title { text-align: left; }
   
+  .menu-btn { display: block; }
+  
+  .menu > form > button { 
+    width: 210px; 
+    margin: 5px 0; 
+  }
+  
+  .si-reg-btn, .local-si-reg-form, .addnew-poll-title, .options-container, .message { width: 80vw; }
+  
+  .addnew-options-box { width: 50vw; }
+  
   .graph-title { font-size: 16px; }
   
   .label-text { font-size: 12px; }
-  
-  .menu-btn { display: block; }
-  
-  .menu > .header-btn {
-    width: 180px;
-    margin: 0 auto;
-  }
   
   .polls-container {
     justify-content: center;
@@ -439,10 +422,5 @@ footer {
     width: 100vw;
     height: 100px;
     border-radius: 0;
-  }
-
-  .menu > form > button { 
-    width: 210px; 
-    margin: 5px 0; 
   }
 }

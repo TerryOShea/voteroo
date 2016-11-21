@@ -3,8 +3,8 @@
     <head><% include ../partials/head %></head>
     <body>
         <% include ../partials/header %>
-        <div class="addnew-container">
-            <h1 class='title'>Add Poll</h1>
+        <h1 class='title'>Add Poll</h1>
+        <div class="addnew-container content-container">
             <form action='/add_new_poll' method='POST' class='addnew-form'>
                 <input type='text' name='title' placeholder='Title' class='addnew-poll-title' maxlength='60' required autofocus>
                 <div class='options-container'>

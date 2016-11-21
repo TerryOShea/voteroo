@@ -1,6 +1,6 @@
 var menu = document.querySelector('.menu'), 
     menuBtn = document.querySelector('.menu-btn'), 
-    container = document.querySelector('.container'), 
+    pageContainer = document.querySelector('.page-container'), 
     closeFlashBtn = document.querySelector('.close-flash-btn'), 
     message = document.querySelector('.message'),
     showing = false;
@@ -8,12 +8,12 @@ var menu = document.querySelector('.menu'),
 function toggleMenu() {
     if (showing) {
         menu.style.right = "-680px";
-        container.style.right = "0px";
+        pageContainer.style.right = "0px";
         showing = false;
     }
     else {
         menu.style.right = "0px"; 
-        container.style.right = "250px";
+        pageContainer.style.right = "250px";
         showing = true;
     }
 }
